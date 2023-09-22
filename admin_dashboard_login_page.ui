@@ -28,7 +28,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="AdminLoginPageLabel">
          <property name="font">
           <font>
            <pointsize>16</pointsize>
@@ -54,7 +54,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="AdminPageEnterEmailInput">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>2</horstretch>
@@ -88,7 +88,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="AdminPageEnterKeyInput">
          <property name="font">
           <font>
            <weight>75</weight>
@@ -113,7 +113,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="AdminPageLoginPushButton">
          <property name="text">
           <string>Login</string>
          </property>
