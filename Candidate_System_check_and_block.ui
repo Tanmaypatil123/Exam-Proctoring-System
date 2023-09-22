@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>361</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="SystemCHeckPageLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>341</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial,sans-serif</family>
+       <pointsize>-1</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Checking Your System Status...</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QProgressBar" name="BackgroundPB">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>200</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="NCPB">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>280</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="ASPB">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>370</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="BackProcessLabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>150</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Checking Background Processes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="NetworkConnLabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>230</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Checking Network Connectivity</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="AntiVCheckLabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>320</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Checking for Antivirus Software</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="SysReqLabel">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>150</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Checking system requirements</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ClosingTabsLabel">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>230</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Closing Other Tabs</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="HWCheckLabel">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>320</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Define a class for your label */
+.QLabel {
+    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #333; /* Set the text color to a Shopify-like color */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px; /* Add some padding around the text */
+    background-color: #f4f4f4; /* Set a background color */
+    border: 1px solid #ccc; /* Add a border for a clean look */
+    border-radius: 5px; /* Round the corners of the label */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Checking Hardware</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="OTPB">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>280</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="SRPB">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>200</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="CHPB">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>370</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
