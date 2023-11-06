@@ -5,7 +5,7 @@ import uuid
 # Create your models here.
 
 class UserManger(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, name, tc, password=None, password2=None, **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
         email = self.normalize_email(email)
@@ -24,7 +24,8 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+    tc = models.BooleanField(null=True,blank=True,default=False)
 
     objects = UserManger()
 
@@ -33,6 +34,22 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+    def has_perm(self, perm, obj=None):
+      "Does the user have a specific permission?"
+      # Simplest possible answer: Yes, always
+      return self.is_admin
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
     
 class Student(models.Model):
     id = models.UUIDField( 
