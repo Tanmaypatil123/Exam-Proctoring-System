@@ -40,6 +40,10 @@ class Questions(models.Model):
         null=True,
         blank=True
     )
+    id = models.UUIDField( 
+         primary_key = True, 
+         default = uuid.uuid4, 
+         editable = False) 
 
 class AnswerOptions(models.Model):
     options = models.CharField(
@@ -51,10 +55,15 @@ class AnswerOptions(models.Model):
     question = models.ForeignKey(
         to=Questions,on_delete=models.CASCADE
     )
+    id = models.UUIDField( 
+         primary_key = True, 
+         default = uuid.uuid4, 
+         editable = False) 
 
 ##  Add models for responses
 class Response(models.Model):
     Response = models.ForeignKey(to=AnswerOptions,on_delete=models.CASCADE)
+    student = models.ForeignKey(to=Student,on_delete=models.CASCADE)
 
 
 class Warning(models.Model):

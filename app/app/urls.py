@@ -26,5 +26,6 @@ urlpatterns = [
     path('',home),
     path('api/',include('users.urls')),
     # path('register/',register),
-    path('management/',include('management.urls'))
+    path('management/',include('management.urls')),
+    path('api/exam/',include('exam.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
