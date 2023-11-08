@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Bhupendra Jogi | Institute Login</title> 
     <link rel="stylesheet" href="css/login.css">
     
 </head>
 <body>
-    <h5>Login</h5>
+    <h5>Institute Login</h5>
     <!-- <h1>Log in</h1> -->
     <form id="loginForm">
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
+        <label for="orgEmail">Email:</label><br>
+        <input type="orgEmail" id="orgEmail" name="orgEmail" required><br><br>
+        <label for="orgPassword">Password:</label><br>
+        <input type="orgPassword" id="orgPassword" name="orgPassword" required><br><br>
         <button type="button" onclick="captureAndVerifyFace()">Login</button>
     </form>
 
-    
+    <div class="helpTools">
+        <a href="#"><button>Help</button></a>
+        <a href="#"><button>Report</button></a>
+        <a href="#"><button>Contact</button></a>
+
+    </div>
 
     <script src="js/loginScript.js" defer></script>
 </body>

@@ -5,6 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background: radial-gradient(circle at 24.1% 68.8%, rgb(12, 12, 12) 0%, rgb(30, 26, 26) 99.4%);
 }
 
 h1 {
@@ -15,38 +16,53 @@ form {
     max-width: 300px;
     width: 100%;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid gold;
+    border-radius:3px;
+    background-color: #262626;
 }
 
 label {
     font-weight: bold;
+    color: white;
+    font-size: smaller;
+    font-weight: 500;
 }
 
 input {
-    width: 100%;
+    width: 93%;
+    background-color: black;
+    color: white;
     padding: 8px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #bcbcbc;
     border-radius: 3px;
+}
+input:hover{
+    border: 3px solid rgb(255, 255, 255);
+    transition: 0.1s;
+    
 }
 
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #45a049;
+    border: 2px solid white;
+    color: black;
+    background-color: white;
+    transition: 0.4s ease-in;
+    
 }
-
 video {
-    width: 100%;
+    width: 50%;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -60,11 +76,59 @@ video {
     color: white;
     border-radius: 5px;
     animation: fadeInOut 3s ease;
+    color: white;
 }
-
 @keyframes fadeInOut {
     0% { opacity: 0; }
     10% { opacity: 1; }
     90% { opacity: 1; }
     100% { opacity: 0; }
+}
+.banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 2px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    z-index: 1000;
+    max-height: 10%;
+    border: 1.2px solid white;
+    
+}
+.banner-content {
+    flex-grow: 0;
+    padding: 10px;
+    font-size: smaller;
+}
+.close-button-banner {
+    cursor: pointer;
+    color: rgb(rgb(17, 133, 123)(133, 17, 17), rgb(16, 133, 16), rgb(187, 255, 0));
+    padding-right: 3vw;
+    border: 1px solid white;
+    background-color: gold;
+    color: black;
+}
+h5 {
+    position: absolute;
+    top: 0px;
+    color: slategray;
+    font-size: larger;
+}
+#togglePassword{
+    position: initial;
+    top: 50%; 
+    right: 10px; 
+    transform: translateY(-50%); 
+    cursor: pointer;
+    color: white;
+    font-weight: lighter;
+    font-size:small;
+    padding: 3px;
+    background-color: black;
 }
