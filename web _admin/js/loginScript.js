@@ -15,6 +15,12 @@ function captureAndVerifyFace() {
     }
 }
 
+// function Database(){
+    
+    // add your code here for storing, the images in database
+
+// }
+
 function verifyFace() {
     setTimeout(function() {
         window.location.href = "dashboard.html";
