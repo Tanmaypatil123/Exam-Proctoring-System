@@ -13,5 +13,3 @@ def scrn_res():
         height = screen.split()[9][:-1]
 
     return (width,height)
-
-print(scrn_res())

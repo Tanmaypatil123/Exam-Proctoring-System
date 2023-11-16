@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class question_attmpting_page(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(993, 770)
@@ -203,3 +203,9 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">diagram</p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Time left for entire exam-00:00:00"))
+
+
+class Question_attempting_window(QtWidgets.QMainWindow,question_attmpting_page):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setupUi(self)

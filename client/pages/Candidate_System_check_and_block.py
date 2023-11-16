@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class System_check_page(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(819, 579)
@@ -227,3 +227,9 @@ class Ui_MainWindow(object):
         self.ClosingTabsLabel.setText(_translate("MainWindow", "Closing Other Tabs"))
         self.BackProcessLabel.setText(_translate("MainWindow", "Checking Background Processes"))
         self.SysReqLabel.setText(_translate("MainWindow", "Checking system requirements"))
+
+
+class SystemCheckWindow(QtWidgets.QMainWindow,System_check_page):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setupUi(self)

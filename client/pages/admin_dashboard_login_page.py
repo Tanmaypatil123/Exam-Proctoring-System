@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class admin_dashboard_page(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -98,3 +98,8 @@ class Ui_MainWindow(object):
         self.AdminPageEnterEmailInput.setPlaceholderText(_translate("MainWindow", "Email ID"))
         self.AdminPageEnterKeyInput.setPlaceholderText(_translate("MainWindow", "Key"))
         self.AdminPageLoginPushButton.setText(_translate("MainWindow", "Login"))
+
+class Admin_Dashboard_window(QtWidgets.QMainWindow,admin_dashboard_page):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setupUi(self)
