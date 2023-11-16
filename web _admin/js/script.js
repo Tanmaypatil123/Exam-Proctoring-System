@@ -50,7 +50,6 @@ document.getElementById('registerButton').addEventListener('click', function () 
 });
 
 
-// closing banner 
 function closeBanner() {
     var banner = document.getElementById('banner');
     banner.style.display = 'none';
@@ -67,3 +66,11 @@ function togglePassword() {
         toggleIcon.textContent = 'Show';
     }
 }
+
+
+// add database connectivity here 
+// function Database(){
+    
+    // add your code here for storing, the images in database
+
+// }

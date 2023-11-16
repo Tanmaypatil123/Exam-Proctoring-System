@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/dash.css">
+    <title>Dashboard</title>
+
 </head>
+
 <body>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti animi reprehenderit ullam doloribus reiciendis est sint tenetur ducimus totam, sit optio aspernatur facilis accusamus iusto. Dignissimos possimus explicabo sed. Quo similique ex expedita et aperiam doloribus rerum deserunt quia, deleniti aliquam quam quos porro saepe, minima natus adipisci commodi omnis?</p>
+    
+
+    <div class="sidenav">
+        
+        <button onclick="openSection('home')">Home</button>
+        <button onclick="openSection('analytics')">Analytics</button>
+        <button onclick="openSection('data')">Data</button>
+        <button onclick="openSection('settings')">Settings</button>
+        <div class="dropdown">
+            <button class="dropbtn">Exams</button>
+            <div class="dropdown-content">
+                <button onclick="openSection('exam1')">Create New Exam</button>
+                <button onclick="openSection('exam2')">Previous Exams</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div id="home" class="section">
+            <h2>Home Section</h2>
+            <!-- home section  -->
+        </div>
+
+        <div id="analytics" class="section">
+            <h2>Analytics Section</h2>
+            <!-- chart.js  -->
+        </div>
+
+
+
+        <div id="data" class="section">
+            <h2>Data Section</h2>
+            <input type="file" id="fileInput" accept=".csv, .xlsx">
+            <div id="preview"></div>
+            <button onclick="parseData()">Parse</button>
+        </div>
+
+        <div id="settings" class="section">
+            <h2>Settings Section</h2>
+            <div class="card" id="profileCard">
+                <h3>Profile Information</h3>
+                <div class="profile-picture-container">
+                    <img src="images/batman.jpg" alt="Profile Picture" id="profilePicture">
+                    <input type="file" id="uploadPhoto" accept="image/*">
+                </div>
+                <!-- org name  -->
+                <label for="organizationName">Organization Name:</label>
+                <input type="text" id="organizationName" placeholder="Enter organization name">
+
+                <button id="setting_see" onclick="saveProfileInformation()">Save</button>
+            </div>
+
+
+            <div class="card" id="accessControlsCard">
+                <h3>Access Controls</h3>
+                <!-- shared access feature  -->
+
+                <label for="userAccess">User Access:</label>
+                <select id="userAccess">
+                    <option value="full">Full Access</option>
+                    <option value="limited">Limited Access</option>
+                </select>
+
+                <button id="setting_see" saveAccessControls()">Save</button>
+            </div>
+
+
+        </div>
+
+        <div id="exam1" class="section">
+            <h2>Create Exam</h2>
+
+        </div>
+
+        <div id="exam2" class="section">
+            <h2>Previous exams</h2>
+
+        </div>
+    </div>
+
+    <script src="js/dash.js"></script>s
 </body>
+
 </html>
