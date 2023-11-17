@@ -33,6 +33,8 @@ class CamWorker(QObject):
         self.net = cv.dnn.readNetFromTensorflow("graph_opt.pb")
         self.upper_body_parts = ["Nose", "Neck", "RShoulder", "LShoulder", "REye", "LEye"]
         self.cap = cv.VideoCapture(0)
+        self.face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
 
     def work(self):
         while self.working:
@@ -43,7 +45,15 @@ class CamWorker(QObject):
 
             frameWidth = frame.shape[1]
             frameHeight = frame.shape[0]
+            gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+            faces = self.face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30))
             
+            num_persons = len(faces)
+            if num_persons == 0:
+                print("please come in frame")
+            else :
+                print(f"more than one persone detected : {num_persons}")
+
             self.net.setInput(cv.dnn.blobFromImage(frame, 1.0, (inWidth, inHeight), (127.5, 127.5, 127.5), swapRB=True, crop=False))
             out = self.net.forward()
             out = out[:, :19, :, :]  # MobileNet output [1, 57, -1, -1], we only need the first 19 elements
