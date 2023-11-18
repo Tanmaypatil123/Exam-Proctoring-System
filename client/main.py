@@ -4,6 +4,11 @@ from PyQt5 import QtCore,QtGui,QtWidgets
 from helpful_scripts.resolution import scrn_res
 from PyQt5.QtWidgets import QWidget
 from pages.candidate_login_page_for_exam import Candidate_login_Window
+from pages.Candidate_System_check_and_block import SystemCheckWindow
+from pages.instruction_page import InstructionWindow
+from pages.question_atempting_screen_candidate_view import Question_attempting_window
+from pages.question import QuestionWindow
+
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self, parent: QWidget | None = None) -> None:
@@ -23,6 +28,17 @@ class Window(QtWidgets.QMainWindow):
         self.candidate_login_window = Candidate_login_Window() 
         self.stacked_widget.addWidget(self.candidate_login_window)
 
+        ## System check page - 1
+        self.systemcheck_window = SystemCheckWindow()
+        self.stacked_widget.addWidget(self.systemcheck_window)
+
+        ## Instruction page - 2
+        self.instruction_window = InstructionWindow()
+        self.stacked_widget.addWidget(self.instruction_window)
+
+        ## Question attempting window - 3
+        self.attempting_window = Question_attempting_window()
+        self.stacked_widget.addWidget(self.attempting_window)
         ## go to first page
         self.go_to_candidate_login_page()
 
