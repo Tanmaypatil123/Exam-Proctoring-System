@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Instructionpage(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -65,3 +65,8 @@ class Ui_MainWindow(object):
 "Best of Luck!"))
         self.checkBox.setText(_translate("MainWindow", "Agree  and continue"))
         self.Proceed.setText(_translate("MainWindow", "proceed"))
+
+class InstructionWindow(QtWidgets.QDialog,Instructionpage):
+    def __init__(self, parent = None) -> None:
+        super().__init__(parent)
+        self.setupUi(self)
