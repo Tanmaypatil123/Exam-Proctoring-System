@@ -266,7 +266,15 @@ class QuestionPage(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">User profile</p></body></html>"))
 
 
-class QuestionWindow(QtWidgets.QDialog,QuestionPage):
+class QuestionWindow(QtWidgets.QMainWindow,QuestionPage):
     def __init__(self, parent = None) -> None:
         super().__init__(parent)
         self.setupUi(self)
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QMainWindow()
+    ui = QuestionWindow()
+    ui.show()
+    sys.exit(app.exec_())

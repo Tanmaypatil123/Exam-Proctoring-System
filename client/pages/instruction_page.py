@@ -66,7 +66,14 @@ class Instructionpage(object):
         self.checkBox.setText(_translate("MainWindow", "Agree  and continue"))
         self.Proceed.setText(_translate("MainWindow", "proceed"))
 
-class InstructionWindow(QtWidgets.QDialog,Instructionpage):
+class InstructionWindow(QtWidgets.QMainWindow,Instructionpage):
     def __init__(self, parent = None) -> None:
         super().__init__(parent)
         self.setupUi(self)
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QMainWindow()
+    ui = InstructionWindow()
+    ui.show()
+    sys.exit(app.exec_())

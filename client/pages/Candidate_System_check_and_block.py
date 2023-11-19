@@ -233,3 +233,11 @@ class SystemCheckWindow(QtWidgets.QMainWindow,System_check_page):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QMainWindow()
+    ui = SystemCheckWindow()
+    ui.show()
+    sys.exit(app.exec_())
