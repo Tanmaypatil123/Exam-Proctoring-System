@@ -10,6 +10,24 @@ from pages.question_atempting_screen_candidate_view import Question_attempting_w
 from pages.question import QuestionWindow
 
 
+def load_questions():
+    questions = {
+        1 : {
+            "question" : "what is your name ?",
+            "options" : [
+                "h","k","l",'j'
+            ]
+        },
+        2 : {
+            "question" : "what is your name ? second",
+            "options" : [
+                "h","k","l",'f'
+            ]
+        }
+    }
+
+    return questions
+
 class Window(QtWidgets.QMainWindow):
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)

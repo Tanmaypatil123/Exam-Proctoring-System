@@ -169,6 +169,17 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    
+    def set_question(self,id,question,options):
+        self.label_2.setText(f"{id} .")
+        self.label_3.setText(question)
+
+        self.radioButton.setText(options[0])
+        self.radioButton_2.setText(options[1])
+        self.radioButton_3.setText(options[2])
+        self.radioButton_4.setText(options[3])
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -197,7 +208,32 @@ class Ui_MainWindow(object):
 class Question_attempting_window(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.selected_answer = None
         self.setupUi(self)
+        self.radioButton.clicked.connect(self.radiobutton_clicked)
+        self.radioButton_2.clicked.connect(self.radiobutton2_clicked)
+        self.radioButton_3.clicked.connect(self.radiobutton3_clicked)
+        self.radioButton_4.clicked.connect(self.radiobutton4_clicked)
+    
+    def radiobutton_clicked(self):
+        sender = self.sender()
+        if sender.isChecked():
+            self.selected_answer = 1
+    
+    def radiobutton2_clicked(self):
+        sender = self.sender()
+        if sender.isChecked():
+            self.selected_answer = 2
+
+    def radiobutton3_clicked(self):
+        sender = self.sender()
+        if sender.isChecked():
+            self.selected_answer = 3
+
+    def radiobutton4_clicked(self):
+        sender = self.sender()
+        if sender.isChecked():
+            self.selected_answer = 4
 
 
 if __name__ == "__main__":

@@ -33,7 +33,7 @@ class CamWorker(QObject):
         self.net = cv.dnn.readNetFromTensorflow("graph_opt.pb")
         self.upper_body_parts = ["Nose", "Neck", "RShoulder", "LShoulder", "REye", "LEye"]
         self.cap = cv.VideoCapture(0)
-        self.face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+        self.face_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 
     def work(self):
