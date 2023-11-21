@@ -224,11 +224,13 @@ class Question_attempting_window(QtWidgets.QMainWindow,Ui_MainWindow):
         sender = self.sender()
         if sender.isChecked():
             self.selected_answer = 1
+        print(self.selected_answer)
     
     def radiobutton2_clicked(self):
         sender = self.sender()
         if sender.isChecked():
             self.selected_answer = 2
+        print(self.selected_answer)
 
     def radiobutton3_clicked(self):
         sender = self.sender()
