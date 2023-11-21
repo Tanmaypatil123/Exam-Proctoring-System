@@ -178,7 +178,12 @@ class Ui_MainWindow(object):
         self.radioButton_2.setText(options[1])
         self.radioButton_3.setText(options[2])
         self.radioButton_4.setText(options[3])
-
+    
+    def reset_window(self):
+        self.radioButton.setChecked(False)
+        self.radioButton_2.setChecked(False)
+        self.radioButton_3.setChecked(False)
+        self.radioButton_4.setChecked(False)
 
 
     def retranslateUi(self, MainWindow):
