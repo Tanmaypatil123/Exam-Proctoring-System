@@ -1,9 +1,16 @@
 from rest_framework import serializers
-from users.models import UserModel
+from users.models import UserModel , Feedback
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from users.utils import Util
+
+class FeedbackSerializers(serializers.ModelSerializer):
+  class Meta :
+    model = Feedback
+    fields = [
+      "experience","feedback"
+    ]
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
   # We are writing this becoz we need confirm password field in our Registratin Request

@@ -61,3 +61,7 @@ class Student(models.Model):
 
 class StudentAuthentication(models.Model):
     student = models.OneToOneField(UserModel, on_delete=models.CASCADE)
+
+class Feedback(models.Model):
+    experience = models.CharField(max_length=50,blank=True,null=True)
+    feedback = models.CharField(max_length=300,blank=True,null=True)
