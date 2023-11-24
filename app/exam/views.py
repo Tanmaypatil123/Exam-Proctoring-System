@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # from exam.forms import UserModelForm
-from exam.serializers import ExamCreationSerializers,QuestionCreation,ResponseCreationSerializer,OptionCreationSerializer,WarningCreationSerializers
+from exam.serializers import ExamCreationSerializers,QuestionCreation,ResponseCreationSerializer,OptionCreationSerializer,WarningCreationSerializers,ExamDetailsSerializers
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response as RS
 from rest_framework import status
@@ -11,6 +11,29 @@ from exam.models import *
 
 def home(request):
     return render(request,"exam/index.html")
+
+class GetExamDetailes(APIView):
+    def get(self,request,format = None):
+        ### get exam from exam detaiils or exam id
+        data = {}
+        data["exam"] = {}
+        serializer = ExamDetailsSerializers(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            
+            exam = Exam.objects.filter(id = serializer.data.get("exam_id")).first()
+            data["exam"]["name"] = exam.name
+            data["exam"]["id"] = exam.id
+            data["exam"]["description"] = exam.description
+            data["exam"]["no_of_questions"] = exam.no_of_questions
+            data["exam"]["max_warning_limit"] = exam.max_warning_limit
+            data["exam"]["organisation"] = exam.organisation
+
+            ## get all the queations for exam
+
+            questions = Questions.objects.filter(exam = exam)
+            
+        return RS(data=data,status=status.HTTP_200_OK)
+
 
 class ExamAPIView(APIView):
     permission_classes = [

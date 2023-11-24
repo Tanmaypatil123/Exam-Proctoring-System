@@ -11,31 +11,73 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Instructionpage(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(392, 377)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.Headline = QtWidgets.QTextEdit(self.centralwidget)
-        self.Headline.setGeometry(QtCore.QRect(280, 0, 231, 41))
-        self.Headline.setStyleSheet("background -color:rgb(0, 0, 127);\n"
-"font: 16pt \"MS Shell Dlg 2\";")
-        self.Headline.setObjectName("Headline")
-        self.insturctioninfo = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.insturctioninfo.setGeometry(QtCore.QRect(90, 90, 621, 281))
-        self.insturctioninfo.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
-"font: 10pt \"MS Shell Dlg 2\";")
-        self.insturctioninfo.setObjectName("insturctioninfo")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setStyleSheet("font: 16pt \"MS Shell Dlg 2\";")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.horizontalLayout.addWidget(self.label)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem1)
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_2.setWordWrap(True)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_3.setWordWrap(True)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_4.setWordWrap(True)
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout.addWidget(self.label_4)
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_5.setWordWrap(True)
+        self.label_5.setObjectName("label_5")
+        self.verticalLayout.addWidget(self.label_5)
         self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox.setGeometry(QtCore.QRect(110, 270, 121, 21))
+        self.checkBox.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
         self.checkBox.setObjectName("checkBox")
-        self.Proceed = QtWidgets.QPushButton(self.centralwidget)
-        self.Proceed.setGeometry(QtCore.QRect(360, 340, 75, 23))
-        self.Proceed.setObjectName("Proceed")
+        self.verticalLayout.addWidget(self.checkBox)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem2)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem3)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setMinimumSize(QtCore.QSize(141, 31))
+        self.pushButton.setMaximumSize(QtCore.QSize(141, 31))
+        self.pushButton.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
+"background-color: rgb(0, 255, 255);")
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_3.addWidget(self.pushButton)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 392, 18))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -48,32 +90,26 @@ class Instructionpage(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.Headline.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt; font-weight:600;\">Instructions</span></p></body></html>"))
-        self.insturctioninfo.setPlainText(_translate("MainWindow", "                              Instructions\n"
-" \n"
-"1.Exam has Total 15 Question.\n"
-"2.Total Exam timining is 30 Minutes\n"
-"3.Camera should be on during test\n"
-"4.Do not Close the window otherwise the test will be submitted automatically \n"
-"\n"
-"\n"
-"\n"
-"Best of Luck!"))
-        self.checkBox.setText(_translate("MainWindow", "Agree  and continue"))
-        self.Proceed.setText(_translate("MainWindow", "proceed"))
+        self.label.setText(_translate("MainWindow", "Instructions"))
+        self.label_2.setText(_translate("MainWindow", "1.Exam has Total 15 Question."))
+        self.label_3.setText(_translate("MainWindow", "2.Total Exam timining is 30 Minutes ."))
+        self.label_4.setText(_translate("MainWindow", "3.Camera should be on during test ."))
+        self.label_5.setText(_translate("MainWindow", "4.Do not Close the window otherwise the test will be submitted automatically "))
+        self.checkBox.setText(_translate("MainWindow", "Agree and continue ."))
+        self.pushButton.setText(_translate("MainWindow", "Procced to Exam"))
 
-class InstructionWindow(QtWidgets.QMainWindow,Instructionpage):
-    def __init__(self, parent = None) -> None:
+
+class INstructiionWindow(QtWidgets.QMainWindow,Ui_MainWindow):
+    def __init__(self, parent=None):
         super().__init__(parent)
+        # self.selected_answer = None
         self.setupUi(self)
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
-    ui = InstructionWindow()
+    ui = INstructiionWindow()
     ui.show()
     sys.exit(app.exec_())

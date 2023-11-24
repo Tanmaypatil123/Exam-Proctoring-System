@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from exam.models import *
 
+class ExamDetailsSerializers(serializers.Serializer):
+    exam_id = serializers.CharField()
 
 class ExamCreationSerializers(serializers.ModelSerializer):
     class Meta :
