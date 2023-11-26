@@ -5,6 +5,12 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from users.utils import Util
 
+class StudentRegisterSerializer(serializers.Serializer):
+  class Meta :
+    fields = [
+      "email" , "name"
+    ]
+
 class FeedbackSerializers(serializers.ModelSerializer):
   class Meta :
     model = Feedback

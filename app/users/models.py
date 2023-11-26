@@ -58,6 +58,8 @@ class Student(models.Model):
          editable = False) 
     organization = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    email = models.EmailField(null=False,blank=False,default="abc@gmail.com")
+    password = models.CharField(max_length=10,blank=False,null=False)
 
 class StudentAuthentication(models.Model):
     student = models.OneToOneField(UserModel, on_delete=models.CASCADE)

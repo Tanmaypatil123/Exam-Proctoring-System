@@ -1,12 +1,14 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from users.serializers import SendPasswordResetEmailSerializer, UserChangePasswordSerializer, UserLoginSerializer, UserPasswordResetSerializer, UserProfileSerializer, UserRegistrationSerializer
+from users.serializers import SendPasswordResetEmailSerializer, UserChangePasswordSerializer, UserLoginSerializer, UserPasswordResetSerializer, UserProfileSerializer, UserRegistrationSerializer,StudentRegisterSerializer
 from django.contrib.auth import authenticate
 from users.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from users.serializers import FeedbackSerializers
+from users.utils import generate_random_password
+from users.models import UserModel,Student
 
 # Generate Token Manually
 def get_tokens_for_user(user):
@@ -76,3 +78,29 @@ class FeedBackAPIView(APIView):
     return Response({
       'msg' : 'Feedback recorded succesfully'
     },status=status.HTTP_201_CREATED)
+  
+class StudentRegistrationAPIView(APIView):
+  permission_classes = [IsAuthenticated]
+  def post(self,request,format = None):
+    serializer = StudentRegisterSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    password = generate_random_password()
+    organisation = request.user
+    print(organisation)
+    organisation = UserModel.objects.filter(email = organisation).first()
+    print(organisation)
+    student_data = {
+                'organization': organisation,
+                'name': request.data.get("name"),
+                'email': request.data.get("email"),
+                'password': password  # You might want to hash the password here
+            }
+    student = Student.objects.create(
+      **student_data
+    )
+    return Response({
+      'name': request.data.get("name"),
+      'email': request.data.get("email"),
+      'password': password 
+    },status=status.HTTP_201_CREATED)
+
