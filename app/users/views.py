@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from users.serializers import FeedbackSerializers
 from users.utils import generate_random_password
 from users.models import UserModel,Student
+from users.serializers import StudentVerifySerializer
 
 # Generate Token Manually
 def get_tokens_for_user(user):
@@ -104,3 +105,19 @@ class StudentRegistrationAPIView(APIView):
       'password': password 
     },status=status.HTTP_201_CREATED)
 
+class StudentVerifyAPIView(APIView):
+  def post(self,request,format = None):
+    serializer = StudentVerifySerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    student = Student.objects.filter(email = request.data.get("email")).first()
+    if student is None:
+      return Response({
+        "msg": "User is not registered"
+      },status=status.HTTP_404_NOT_FOUND)
+    if student.password != request.data.get("password"):
+      return Response({
+        "msg":"Password is incorrect"
+      },status=status.HTTP_400_BAD_REQUEST)
+    return Response({
+      "msg" : "Success"
+    },status=status.HTTP_200_OK)

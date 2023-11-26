@@ -11,6 +11,12 @@ class StudentRegisterSerializer(serializers.Serializer):
       "email" , "name"
     ]
 
+class StudentVerifySerializer(serializers.Serializer):
+  class Meta :
+    fields = [
+      "email", "password"
+    ]
+
 class FeedbackSerializers(serializers.ModelSerializer):
   class Meta :
     model = Feedback
