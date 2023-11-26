@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'exam',
     'management',
+    'code_interpreter'
 ]
 
 MIDDLEWARE = [
