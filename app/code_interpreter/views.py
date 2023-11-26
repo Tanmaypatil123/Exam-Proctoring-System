@@ -43,23 +43,17 @@ class SubmissionCreate(generics.CreateAPIView):
 
         question = CodingQuestion.objects.filter(id = request.data.get("question_id")).first()
         
-        # self.perform_create(serializer)
-        # submission = serializer.instance
-        # print(submission)
-        # Call a function to evaluate the submission against test cases
+      
         passed_test_cases, failed_test_cases = self.evaluate_submission(question,code)
         print(passed_test_cases)
         print(failed_test_cases)
-        # # Update the submission status based on test case results
-        # # For example, you can set a field like submission.passed = len(passed_test_cases) == total_test_cases
-        # submission.save()
         # return Response({
         #     "msg" : "hey reache till here ."
         # },status=status.HTTP_200_OK)
         return Response({
             'passed': len(passed_test_cases),
             'failed': len(failed_test_cases),
-            # Include more details or specific failed test cases if needed
+            
         }, status=status.HTTP_201_CREATED)
     
 
@@ -78,7 +72,7 @@ class SubmissionCreate(generics.CreateAPIView):
 
             execution_data = {
                 'input_data': input_data,
-                'output_data': None  # This will store the output of the execution
+                'output_data': None  
             }
             code_to_exe = code_template.format(
                 input_data = input_data,
@@ -94,7 +88,7 @@ class SubmissionCreate(generics.CreateAPIView):
                 # print(f"I ma printing s {s}")
                 execution_data['output_data'] = s
             except Exception as e:
-                # Handle exceptions during code execution (syntax errors, etc.)
+            
                 traceback_msg = traceback.format_exc()
                 failed_test_cases.append({
                     'input': input_data,
