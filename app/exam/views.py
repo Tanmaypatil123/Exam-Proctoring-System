@@ -65,19 +65,22 @@ class QuestionAPIView(APIView):
     renderer_classes = [
         UserRenderer
     ]
-
-    def post(self,request,format=None):
+ 
+    def post(self, request, format=None):
+        # create question for an exam
         serializer = QuestionCreation(data=request.data)
-        if serializer.is_valid():
-            print(serializer)
-            exam = Exam.objects.filter(id = serializer.data.get("exam_id")).first()
-            question = Questions.objects.create(
-                exam = exam,
-                question = serializer.data.get("question")
-            )
-            return RS({
-                "msg": "question creted succesfully"
-            },status=status.HTTP_201_CREATED)
+        if serializer.is_valid(raise_exception=True):
+            exam_id = serializer.validated_data["exam_id"]
+            question_text = serializer.validated_data["question"]
+
+            exam = Exam.objects.get(id=exam_id)
+
+            # Create a new question associated with the exam
+            question = Questions.objects.create(exam=exam, question=question_text)
+
+            return RS(data={"question_id": str(question.id)}, status=status.HTTP_201_CREATED)
+
+        return RS(data={}, status=status.HTTP_400_BAD_REQUEST)
         
 class OptionCreationAPIView(APIView):
 

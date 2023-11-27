@@ -12,7 +12,7 @@ class ExamCreationSerializers(serializers.ModelSerializer):
         ]
 
 class QuestionCreation(serializers.Serializer):
-    exam_id = serializers.CharField()
+    exam_id = serializers.UUIDField()
     question = serializers.CharField()
     
     class Meta :
