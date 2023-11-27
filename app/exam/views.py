@@ -14,24 +14,28 @@ def home(request):
 
 class GetExamDetailes(APIView):
     def get(self,request,format = None):
-        ### get exam from exam detaiils or exam id
+        # get exam from exam details or exam id
         data = {}
-        data["exam"] = {}
+        data["exam"] = {}  # Initialize as a dictionary
         serializer = ExamDetailsSerializers(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            
-            exam = Exam.objects.filter(id = serializer.data.get("exam_id")).first()
-            data["exam"]["name"] = exam.name
-            data["exam"]["id"] = exam.id
-            data["exam"]["description"] = exam.description
-            data["exam"]["no_of_questions"] = exam.no_of_questions
-            data["exam"]["max_warning_limit"] = exam.max_warning_limit
-            data["exam"]["organisation"] = exam.organisation
+            exam = Exam.objects.filter(id=serializer.data.get("exam_id")).first()
+            print(f"## {serializer.data.get('exam_id')} {exam}")
 
-            ## get all the queations for exam
+            # Assign values to data["exam"]
+            data["exam"]["name"] = str(exam.name)
+            data["exam"]["id"] = str(exam.id)
+            data["exam"]["description"] = str(exam.description)
+            data["exam"]["no_of_questions"] = str(exam.no_of_questions)
+            data["exam"]["max_warning_limit"] = str(exam.max_warning_limit)
+            data["exam"]["organisation"] = str(exam.organisation)
+            data['queations'] = {}
+            # Iterate over questions and options
+            for que in exam.queation:
+                data['queations'][str(que.id)] = {'title': str(que.question), 'options': []}
+                for opt in que.options:
+                    data['queations'][str(que.id)]['options'].append(str(opt.options))
 
-            questions = Questions.objects.filter(exam = exam)
-            
         return RS(data=data,status=status.HTTP_200_OK)
 
 
@@ -74,6 +78,7 @@ class QuestionAPIView(APIView):
             return RS({
                 "msg": "question creted succesfully"
             },status=status.HTTP_201_CREATED)
+        
 class OptionCreationAPIView(APIView):
 
     permission_classes = [

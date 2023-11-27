@@ -33,6 +33,10 @@ class Exam(models.Model):
     )
     organisation = models.ForeignKey(to=UserModel,on_delete=models.CASCADE)
 
+    @property
+    def queation(self):
+        return Questions.objects.filter(exam=self)
+
 class Questions(models.Model):
     exam = models.ForeignKey(to=Exam,on_delete=models.CASCADE)
     question = models.CharField(
@@ -44,6 +48,10 @@ class Questions(models.Model):
          primary_key = True, 
          default = uuid.uuid4, 
          editable = False) 
+    
+    @property
+    def options(self):
+        return AnswerOptions.objects.filter(question=self)
 
 class AnswerOptions(models.Model):
     options = models.CharField(

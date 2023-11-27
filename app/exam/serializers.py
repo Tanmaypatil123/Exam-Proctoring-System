@@ -2,7 +2,7 @@ from rest_framework import serializers
 from exam.models import *
 
 class ExamDetailsSerializers(serializers.Serializer):
-    exam_id = serializers.CharField()
+    exam_id = serializers.UUIDField()
 
 class ExamCreationSerializers(serializers.ModelSerializer):
     class Meta :
