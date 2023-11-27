@@ -6,6 +6,7 @@ body {
     height: 100vh;
     margin: 0;
     background: radial-gradient(circle at 24.1% 68.8%, rgb(12, 12, 12) 0%, rgb(30, 26, 26) 99.4%);
+    flex-direction: column;
 
 }
     
@@ -82,4 +83,11 @@ video {
 }
 .helpTools a{
     width: 100%;
+}
+#Linkkk{
+    color: white;
+    font-weight: lighter;
+}
+#Linkkk a:visited{
+    color: red;
 }

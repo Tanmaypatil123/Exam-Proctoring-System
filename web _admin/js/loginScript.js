@@ -17,7 +17,7 @@ function captureAndVerifyFace() {
 
 // function Database(){
     
-    // add your code here for storing, the images in database
+    // code here for DB 
 
 // }
 
