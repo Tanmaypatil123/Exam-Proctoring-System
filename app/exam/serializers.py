@@ -36,6 +36,7 @@ class ResponseCreationSerializer(serializers.Serializer):
     
     class Meta :
         fields = [
+            "student_email"
             "option_id"
         ]
 

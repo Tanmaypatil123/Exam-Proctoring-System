@@ -32,9 +32,10 @@ class GetExamDetailes(APIView):
             data['queations'] = {}
             # Iterate over questions and options
             for que in exam.queation:
-                data['queations'][str(que.id)] = {'title': str(que.question), 'options': []}
+                data['queations'][str(que.id)] = {'title': str(que.question), 'options': [],"options_id":[]}
                 for opt in que.options:
                     data['queations'][str(que.id)]['options'].append(str(opt.options))
+                    data['queations'][str(que.id)]['options_id'].append(str(opt.id))
 
         return RS(data=data,status=status.HTTP_200_OK)
 
@@ -117,8 +118,9 @@ class ResponseCreationAPIView(APIView):
         serializer = ResponseCreationSerializer(data=request.data)
         if serializer.is_valid():
             option = AnswerOptions.objects.filter(serializer.data.get("option_id")).first()
-            student = request.user 
-
+            # student = request.user 
+            student = Student.objects.filter(email = serializer.data.get("student_email"))
+            print(student)
             response = Response.objects.create(
                 Response = option,
                 student = student
