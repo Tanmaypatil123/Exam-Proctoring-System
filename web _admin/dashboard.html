@@ -5,24 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Dashboard</title>
 
 </head>
 
 <body>
-    
+
 
     <div class="sidenav">
-        
-        <button onclick="openSection('home')">Home</button>
-        <button onclick="openSection('analytics')">Analytics</button>
-        <button onclick="openSection('data')">Data</button>
-        <button onclick="openSection('settings')">Settings</button>
+        <h4 class="sihLOGO"><b>Made by</b></h4>
+        <img src="images/Group 12SIH LOGO.png" class="sihLOGO" alt="Defeat">
+        <button onclick="openSection('home')">Home <i class="fa fa-building" aria-hidden="true"></i>
+        </button>
+        <button onclick="openSection('analytics')">Analytics <i id="icons" class="fa fa-bar-chart"
+                aria-hidden="true"></i>
+        </button>
+        <button onclick="openSection('data')">Data <i id="icons" class="fa fa-database" aria-hidden="true"></i>
+        </button>
+        <button onclick="openSection('settings')">Settings <i id="icons" class="fa fa-cog" aria-hidden="true"></i>
+        </button>
         <div class="dropdown">
-            <button class="dropbtn">Exams</button>
+            <button class="dropbtn">Exams <i class="fa fa-book" aria-hidden="true"></i>
+            </button>
             <div class="dropdown-content">
-                <button onclick="openSection('exam1')">Create New Exam</button>
-                <button onclick="openSection('exam2')">Previous Exams</button>
+                <button onclick="openSection('exam1')">Create New Exam <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+                <button onclick="openSection('exam2')">Previous Exams <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -45,7 +55,8 @@
             <h2>Data Section</h2>
             <input type="file" id="fileInput" accept=".csv, .xlsx">
             <div id="preview"></div>
-            <button onclick="parseData()">Parse</button>
+            <button onclick="parseData()">Parse <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            </button>
         </div>
 
         <div id="settings" class="section">
@@ -82,16 +93,57 @@
 
         <div id="exam1" class="section">
             <h2>Create Exam</h2>
+            <div id="content">
+                <div class="card">
+                    <label id="Create-exam-labels" examName">Exam Name:</label>
+                    <input type="text" id="examName" required>
+
+                    <label id="Create-exam-labels" for="examDate">Exam Date:</label>
+                    <input type="date" id="examDate" required>
+
+                    <label id="Create-exam-labels" for="startTime">Start Time:</label>
+                    <input type="time" id="startTime" required>
+
+                    <label id="Create-exam-labels" for="endTime">End Time:</label>
+                    <input type="time" id="endTime" required>
+
+                    <button onclick="saveExamDetails()">Save</button>
+                </div>
+            </div>
+            <div class="quiz-container">
+                <h2 id="Createquiz">Create Quiz</h2>
+                <form id="quiz-form">
+                    <label for="no-of-questions">Number of Questions:</label>
+                    <input type="number" id="no-of-questions" required>
+
+                    <div id="question-type-pane">
+                        <button type="button" onclick="addQAndA()">Insert Question</button>
+                        <button type="button" onclick="addCodingQ()">Insert Coding Question</button>
+                    </div>
+
+                    <div id="quiz-cards"></div>
+
+                    <button type="button" onclick="publishExam()">Publish Exam</button>
+                </form>
+
+                <div id="json-output"></div>
+            </div>
 
         </div>
+
+
+        <script src="script.js"></script>
+
+
 
         <div id="exam2" class="section">
             <h2>Previous exams</h2>
 
         </div>
     </div>
-
-    <script src="js/dash.js"></script>s
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="js/dash.js"></script>
+    <script src="js/dash_create_exam.js"></script>
 </body>
 
 </html>
