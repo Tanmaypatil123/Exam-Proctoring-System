@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from dotenv import load_dotenv
+from .config import code_question_id_loadder
+import requests
 
 
 class Ui_MainWindow(object):
@@ -19,6 +22,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.question = code_question_id_loadder
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -125,6 +129,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.pushButton.clicked.connect(self.request_set_output)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -137,13 +142,32 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Run Tests"))
         self.pushButton_2.setText(_translate("MainWindow", "Submit"))
         self.label_4.setText(_translate("MainWindow", "Total Test Cases : 1"))
-        self.label_5.setText(_translate("MainWindow", "Passed : 1"))
+        self.label_5.setText(_translate("MainWindow", "Passed : 0"))
         self.label_6.setText(_translate("MainWindow", "Failed : 0"))
         self.label_3.setText(_translate("MainWindow", "Submitted : No"))
         self.label_7.setText(_translate("MainWindow", "STD output : Not Runned yet "))
 
+    def request_set_output(self):
+        code = self.plainTextEdit.toPlainText()
+        response = requests.post(
+            "http://127.0.0.1:8000/api/code/submit/",
+            data = {
+                "question_id" : self.question,
+                "code" : code
+           }
+        )
+        print(response.json())
+        response = response.json()
+        self.label_4.setText(f"Total Test Cases : {response['passed'] + response['failed']}")
+        self.label_5.setText(f"Passed : {response['passed']}")
+        self.label_6.setText(f"Failed : {response['failed']}")
+        if response['failed'] >= 1:
+            if len(response['failed_details']) > 0 and "error" in response['failed_details'][0]:
+                self.label_7.setText(f"STD output : {response['failed_details'][0]['error']}")
+        else :
+            self.label_7.setText("STD output : None")
 
-class SystemCheckWindow(QtWidgets.QMainWindow,Ui_MainWindow):
+class Code_window(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
@@ -152,6 +176,6 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
-    ui = SystemCheckWindow()
+    ui = Code_window()
     ui.show()
     sys.exit(app.exec_())

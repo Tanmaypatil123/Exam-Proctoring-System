@@ -170,12 +170,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
     
-    def set_question(self,id,option_id,question,options):
+    def set_question(self,id,question,options):
         self.label_2.setText(f"{id} .")
         self.label_3.setText(question)
         self.question = question
         self.options = options
-        self.options_id = option_id
+        # self.options_id = option_id
 
         self.radioButton.setText(options[0])
         self.radioButton_2.setText(options[1])

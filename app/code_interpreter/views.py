@@ -53,6 +53,7 @@ class SubmissionCreate(generics.CreateAPIView):
         return Response({
             'passed': len(passed_test_cases),
             'failed': len(failed_test_cases),
+            'failed_details' : failed_test_cases
             
         }, status=status.HTTP_201_CREATED)
     

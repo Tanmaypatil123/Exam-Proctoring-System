@@ -15,6 +15,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from pages.question_window import QuestionWindow
 from dotenv import load_dotenv
+from pages.code_questino import Code_window
 import json
 
 import os
@@ -147,6 +148,15 @@ class Window(QtWidgets.QMainWindow):
             button.clicked.connect(lambda checked , q = question_number : self.load_question_backend(q))
             self.question_window.gridLayout.addWidget(button,row,col)
             self.buttons.append(button)
+        button = QPushButton(f"{question_number + 1}")
+        self.question_window.gridLayout.addWidget(button,row,col + 1)
+        button.clicked.connect(self.go_to_code_window)
+        # coding_window = Code_window()
+
+    def go_to_code_window(self):
+        coding_window = Code_window()
+        self.stacked_widget.addWidget(coding_window)
+        self.stacked_widget.setCurrentWidget(coding_window)
 
     def load_query(self):
         response = requests.get("http://127.0.0.1:8000/api/exam/get-exam-deails/",data={
@@ -160,10 +170,10 @@ class Window(QtWidgets.QMainWindow):
     def load_question_backend(self,q):
         print(self.examdetails)
         print(self.response)
-        print(self.questions[q])
+        print(self.questions)
         
         attempting_window = Question_attempting_window()
-        attempting_window.set_question(q,self.questions[q]["title"],self.questions[q]["options"])
+        attempting_window.set_question(q,self.questions[q - 1]["title"],self.questions[q -1]["options"])
         self.stacked_widget.addWidget(attempting_window)
         self.stacked_widget.setCurrentWidget(attempting_window)
         print(q)
