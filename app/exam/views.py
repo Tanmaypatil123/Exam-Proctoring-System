@@ -142,5 +142,5 @@ class WarningAPIView(APIView):
             )
         ## Remained to write logic for count increment and disqalification .
         return RS({
-            "msg" : "Warning recorded Recorded"
+            "msg" : "Warning recorded Recorded."
         },status=status.HTTP_201_CREATED)
