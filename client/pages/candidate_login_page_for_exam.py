@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import requests
 
 class Candidate_login(object):
     def setupUi(self, MainWindow):
@@ -91,6 +91,10 @@ class Candidate_login_Window(QtWidgets.QMainWindow,Candidate_login):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+        
+        # self.pushButton.clicked.connect(self.get_email_password)
+    
+        
 
 if __name__ == "__main__":
     import sys

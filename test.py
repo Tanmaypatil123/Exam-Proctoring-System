@@ -1,51 +1,54 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QPlainTextEdit, QVBoxLayout, QWidget
-from PyQt5.QtGui import QFont, QColor
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton, QLabel
 
-class CodeEditor(QMainWindow):
+class QuestionApp(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
-        self.setWindowTitle('Code Editor')
-        self.setGeometry(100, 100, 800, 600)
+    def init_ui(self):
+        layout = QGridLayout()
 
-        self.central_widget = QWidget()
-        self.layout = QVBoxLayout()
+        # Create buttons for question numbers and arrange them in a grid
+        num_questions = 10  # Assuming 10 questions
+        cols = 4  # Number of columns
+        self.buttons = []  # To store references to the buttons
 
-        self.editor = QPlainTextEdit()
-        self.editor.setFont(QFont("Consolas", 12))  # Set font
-        self.editor.setStyleSheet("background-color: black; color: white;")  # Set background color and font color
-        self.layout.addWidget(self.editor)
+        for question_number in range(1, num_questions + 1):
+            row = (question_number - 1) // cols
+            col = (question_number - 1) % cols
+            button = QPushButton(f"Question {question_number}")
+            button.clicked.connect(lambda checked, q=question_number: self.load_question(q))
+            layout.addWidget(button, row, col)
+            self.buttons.append(button)
 
-        self.central_widget.setLayout(self.layout)
-        self.setCentralWidget(self.central_widget)
+        # Label to display the loaded question
+        self.question_label = QLabel()
+        layout.addWidget(self.question_label, num_questions // cols + 1, 0, 1, cols)
 
-        self.createMenuBar()
+        self.setLayout(layout)
 
-    def createMenuBar(self):
-        menubar = self.menuBar()
+    def load_question(self, question_number):
+        # Change color of clicked button to red and reset others to green
+        for button in self.buttons:
+            if button.text() == f"Question {question_number}":
+                button.setStyleSheet("background-color: red;")
+            else:
+                button.setStyleSheet("background-color: green;")
 
-        file_menu = menubar.addMenu('File')
+        # Here, you can implement code to load the question based on the question number
+        # For example, fetch the question from a database or predefined list
+        questions = {
+            1: "What is the capital of France?",
+            2: "Who painted the Mona Lisa?",
+            # Add more questions as needed
+        }
 
-        save_action = QAction('Save', self)
-        save_action.triggered.connect(self.saveFile)
-        file_menu.addAction(save_action)
-
-    def saveFile(self):
-        text = self.editor.toPlainText()
-        file_path, _ = QFileDialog.getSaveFileName(self, 'Save File', '', 'Text Files (*.txt);;Python Files (*.py)')
-        if file_path:
-            with open(file_path, 'w') as file:
-                file.write(text)
-
-def main():
-    app = QApplication(sys.argv)
-    editor = CodeEditor()
-    editor.show()
-    sys.exit(app.exec_())
+        # Display the loaded question in the label
+        self.question_label.setText(questions.get(question_number, "Question not found"))
 
 if __name__ == '__main__':
-    main()
+    app = QApplication([])
+    window = QuestionApp()
+    window.show()
+    app.exec_()
