@@ -14,6 +14,12 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from pages.question_window import QuestionWindow
+from dotenv import load_dotenv
+import json
+
+import os
+
+load_dotenv()
 
 def load_questions():
     questions = {
@@ -39,6 +45,7 @@ class Window(QtWidgets.QMainWindow):
         # (self.width, self.height) = scrn_res()
         (self.width, self.height) = (1280,600)
         # following staked widgetstores pages or gui class related to software
+        self.examdetails = os.getenv("EXAM_DETAILS")
         self.stacked_widget = QtWidgets.QStackedWidget()
         self.stacked_widget.setFixedSize(self.width,self.height)
         self.question_data = load_questions()
@@ -47,6 +54,7 @@ class Window(QtWidgets.QMainWindow):
         self.setGeometry(0,0,self.width,self.height)
         self.cols = 4
         self.buttons = []
+        self.questions  = []
 
         ### pages object are as follows
 
@@ -81,14 +89,14 @@ class Window(QtWidgets.QMainWindow):
 
         ## go to first page
         self.go_to_candidate_login_page()
-
+        self.load_query()
 
         ## event handling 
         self.candidate_login_window.pushButton.clicked.connect(self.get_email_password)
         self.instruction_window.pushButton.clicked.connect(self.go_to_question_window)
 
     def go_to_question_window(self):
-        self.load_questions_ui(10)
+        self.load_questions_ui()
         self.stacked_widget.setCurrentIndex(3)
     def go_to_instruction_page(self):
         self.stacked_widget.setCurrentIndex(2)
@@ -130,7 +138,8 @@ class Window(QtWidgets.QMainWindow):
             return True
         else : return False
 
-    def load_questions_ui(self,no_of_questions):
+    def load_questions_ui(self):
+        no_of_questions = len(self.response["queations"])
         for question_number in range(1,no_of_questions + 1):
             row = (question_number - 1) // self.cols
             col = (question_number - 1) %  self.cols
@@ -139,7 +148,24 @@ class Window(QtWidgets.QMainWindow):
             self.question_window.gridLayout.addWidget(button,row,col)
             self.buttons.append(button)
 
+    def load_query(self):
+        response = requests.get("http://127.0.0.1:8000/api/exam/get-exam-deails/",data={
+            "exam_id" : self.examdetails
+        })
+        self.response = response.json()
+        for i in self.response["queations"]:
+            self.questions.append(self.response["queations"][i])
+        
+        print(response.json())
     def load_question_backend(self,q):
+        print(self.examdetails)
+        print(self.response)
+        print(self.questions[q])
+        
+        attempting_window = Question_attempting_window()
+        attempting_window.set_question(q,self.questions[q]["title"],self.questions[q]["options"])
+        self.stacked_widget.addWidget(attempting_window)
+        self.stacked_widget.setCurrentWidget(attempting_window)
         print(q)
 
 if __name__ == "__main__":
