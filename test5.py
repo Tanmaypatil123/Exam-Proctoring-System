@@ -23,16 +23,23 @@ class DetectionThread(QThread):
         predictions = self.model(image_path, verbose=False, save_txt=True)
         txt_file_path = "runs\detect\predict\labels\captured_image.txt"
         file_exists = os.path.exists(txt_file_path)
-        
+        runs_path = "runs"
         if file_exists:
             print("Text file generated.")
-            shutil.rmtree("runs\detect\predict")  # Remove the entire folder predict and its contents
+            # shutil.rmtree(r"C:\Users\patil\Desktop\SIH Project\Ctrl-Alt-Defeat\runs\detect")  # Remove the entire folder predict and its contents
+            self.removeRunsDirectory(runs_path)
             print("Folder 'predict' deleted.")
             self.finished.emit(True)
         else:
             print("Text file not generated.")
+            self.removeRunsDirectory(runs_path)
             self.finished.emit(False)
 
+    def removeRunsDirectory(self, dir_path):
+        print(f"Deleting directory: {dir_path}")
+        # Use shutil.rmtree to remove the 'runs' directory and its contents
+        shutil.rmtree(dir_path)
+        
 class Worker(QMainWindow):
     def __init__(self):
         super().__init__()
