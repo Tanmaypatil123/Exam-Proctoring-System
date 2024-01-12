@@ -16,12 +16,37 @@ from PyQt5.QtWidgets import *
 from pages.question_window import QuestionWindow
 from dotenv import load_dotenv
 from pages.code_questino import Code_window
+from ultralytics import YOLO
 import json
-
+import shutil
 import os
+import cv2
 
 load_dotenv()
 
+class YOLODetectionWorker(QObject):
+    phone_detection = pyqtSignal(bool)
+
+    def __init__(self):
+        super().__init__()
+        self.model = YOLO("best.pt")
+        self.model.fuse()
+
+    def detect_objects(self, image_path):
+        predictions = self.model(image_path, verbose=False, save_txt=True)
+        txt_file_path = "runs/detect/predict/labels/captured_image.txt"
+        file_exists = os.path.exists(txt_file_path)
+        runs_path = "runs"
+
+        if file_exists:
+            print("Text file generated.")
+            shutil.rmtree(runs_path)
+            print("Folder 'runs' deleted.")
+            self.phone_detection.emit(True)
+        else:
+            print("Text file not generated.")
+            shutil.rmtree(runs_path)
+            self.phone_detection.emit(False)
 def load_questions():
     questions = {
         1 : {
@@ -56,6 +81,9 @@ class Window(QtWidgets.QMainWindow):
         self.cols = 4
         self.buttons = []
         self.questions  = []
+        self.video_capture = cv2.VideoCapture(0)
+        self.yolo_worker = YOLODetectionWorker()
+        self.thread_yolo_detection = QThread(self)
 
         ### pages object are as follows
 
@@ -95,7 +123,32 @@ class Window(QtWidgets.QMainWindow):
         ## event handling 
         self.candidate_login_window.pushButton.clicked.connect(self.get_email_password)
         self.instruction_window.pushButton.clicked.connect(self.go_to_question_window)
+        self.start_workers()
 
+    def start_workers(self):
+        # self.face_worker.moveToThread(self.thread_face_detection)
+        self.yolo_worker.moveToThread(self.thread_yolo_detection)
+
+        # self.face_worker.update_frame.connect(self.display_frame)
+        # self.thread_face_detection.started.connect(self.perform_face_detection)
+        self.thread_yolo_detection.started.connect(self.perform_yolo_detection)
+        self.yolo_worker.phone_detection.connect(self.handle_yolo_detection)
+        
+        # self.thread_face_detection.start()
+        self.thread_yolo_detection.start()
+
+    def perform_yolo_detection(self):
+        while True:
+            ret, frame = self.video_capture.read()
+            if ret:
+                image_path = "captured_image.png"
+                cv2.imwrite(image_path, frame)
+                self.yolo_worker.detect_objects(image_path)
+                cv2.waitKey(1)
+
+    def handle_yolo_detection(self, result):
+        # Handle YOLO detection result, e.g., show message or update UI based on phone detection
+        print("YOLO Phone Detection Result:", result)
     def go_to_question_window(self):
         self.load_questions_ui()
         self.stacked_widget.setCurrentIndex(3)

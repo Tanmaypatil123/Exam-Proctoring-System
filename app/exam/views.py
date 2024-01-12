@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from users.renderers import UserRenderer
 from exam.models import *
+from code_interpreter.models import *
 # Create your views here.
 
 def home(request):
@@ -36,6 +37,27 @@ class GetExamDetailes(APIView):
                 for opt in que.options:
                     data['queations'][str(que.id)]['options'].append(str(opt.options))
                     data['queations'][str(que.id)]['options_id'].append(str(opt.id))
+
+            data["coding_questions"] = {}
+            coding_questions = CodingQuestion.objects.filter(exam = exam).all()
+            for ques in coding_questions:
+                data["coding_questions"][str(ques.id)] = {
+                    "title" : str(ques.title),
+                    "description" : str(ques.description),
+                    "testcases" : {}
+                }
+                testcases = TestCase.objects.filter(question = ques).all()
+                print(testcases)
+                print(len(testcases))
+                if len(testcases) >= 1 :
+                    for i in testcases : 
+                        pre = {
+                            "input" : i.input,
+                            "output" : i.output
+                        }
+                        data["coding_questions"][str(ques.id)]["testcases"][str(i.id)] = pre
+                    
+                # data["coding_questions"][str(ques.id)]["question"].append
 
         return RS(data=data,status=status.HTTP_200_OK)
 

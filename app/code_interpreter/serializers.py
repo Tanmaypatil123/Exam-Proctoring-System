@@ -11,7 +11,7 @@ class CodingQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CodingQuestion
-        fields = ["id",'title', 'description', 'language', 'testcases']
+        fields = ["id",'title', 'description', 'language', 'testcases','exam']
 
 class SubmissionSerializer(serializers.Serializer):
     class Meta:

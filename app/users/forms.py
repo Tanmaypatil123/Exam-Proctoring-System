@@ -11,7 +11,7 @@ class OrganizationForm(forms.ModelForm):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['organization', 'name', 'email'] 
+        fields = ['organization', 'name', 'email','exam'] 
 
 
 class StudentAuthenticationForm(UserCreationForm):

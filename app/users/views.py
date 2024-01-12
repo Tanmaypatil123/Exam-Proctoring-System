@@ -10,7 +10,7 @@ from users.serializers import FeedbackSerializers
 from users.utils import generate_random_password
 from users.models import UserModel,Student
 from users.serializers import StudentVerifySerializer
-
+from exam.models import Exam
 # Generate Token Manually
 def get_tokens_for_user(user):
   refresh = RefreshToken.for_user(user)
@@ -90,10 +90,14 @@ class StudentRegistrationAPIView(APIView):
     print(organisation)
     organisation = UserModel.objects.filter(email = organisation).first()
     print(organisation)
+    print(request.data)
+    exam = Exam.objects.filter(id = request.data.get("exam")).first()
+    print(exam)
     student_data = {
                 'organization': organisation,
                 'name': request.data.get("name"),
                 'email': request.data.get("email"),
+                'exam' : exam,
                 'password': password  # You might want to hash the password here
             }
     student = Student.objects.create(
@@ -110,6 +114,7 @@ class StudentVerifyAPIView(APIView):
     serializer = StudentVerifySerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     student = Student.objects.filter(email = request.data.get("email")).first()
+    exam = student.exam
     if student is None:
       return Response({
         "msg": "User is not registered"
@@ -119,5 +124,7 @@ class StudentVerifyAPIView(APIView):
         "msg":"Password is incorrect"
       },status=status.HTTP_400_BAD_REQUEST)
     return Response({
-      "msg" : "Success"
+      "msg" : "Success",
+      "exam_id" : exam.id
+      
     },status=status.HTTP_200_OK)

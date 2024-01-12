@@ -11,6 +11,7 @@ class CodingQuestion(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     language = models.CharField(max_length=50, default='Python')
+    exam = models.ForeignKey(to = "exam.Exam",on_delete = models.CASCADE)
 
 class TestCase(models.Model):
     id = models.UUIDField( 

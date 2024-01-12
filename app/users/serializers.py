@@ -8,7 +8,7 @@ from users.utils import Util
 class StudentRegisterSerializer(serializers.Serializer):
   class Meta :
     fields = [
-      "email" , "name"
+      "email" , "name","exam"
     ]
 
 class StudentVerifySerializer(serializers.Serializer):
