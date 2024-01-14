@@ -71,7 +71,7 @@ class Window(QtWidgets.QMainWindow):
         # (self.width, self.height) = scrn_res()
         (self.width, self.height) = (1280,600)
         # following staked widgetstores pages or gui class related to software
-        self.examdetails = os.getenv("EXAM_DETAILS")
+        self.examdetails = None
         self.stacked_widget = QtWidgets.QStackedWidget()
         self.stacked_widget.setFixedSize(self.width,self.height)
         self.question_data = load_questions()
@@ -118,12 +118,14 @@ class Window(QtWidgets.QMainWindow):
 
         ## go to first page
         self.go_to_candidate_login_page()
-        self.load_query()
+        # self.load_query()
 
         ## event handling 
         self.candidate_login_window.pushButton.clicked.connect(self.get_email_password)
         self.instruction_window.pushButton.clicked.connect(self.go_to_question_window)
-        self.start_workers()
+        self.start_exam = False
+        if self.start_exam :
+            self.start_workers()
 
     def start_workers(self):
         # self.face_worker.moveToThread(self.thread_face_detection)
@@ -189,6 +191,11 @@ class Window(QtWidgets.QMainWindow):
             "password" : password
         })
         if response.status_code == 200 :
+            res = response.json()
+
+            print(res)
+            self.examdetails = res['exam_id']
+            self.load_query()
             return True
         else : return False
 
@@ -216,6 +223,8 @@ class Window(QtWidgets.QMainWindow):
             "exam_id" : self.examdetails
         })
         self.response = response.json()
+        print(self.response)
+        print(len(self.response["queations"]) + len(self.response["coding_questions"]))
         for i in self.response["queations"]:
             self.questions.append(self.response["queations"][i])
         

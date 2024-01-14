@@ -13,16 +13,17 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from dotenv import load_dotenv
-from .config import code_question_id_loadder
+# from .config import code_question_id_loadder
 import requests
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow,question_id):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.question = code_question_id_loadder
+        # self.question = code_question_id_loadder
+        self.question = question_id
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -141,7 +142,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "you have given two input numbers \'a\' and \'b\'. just print the addition of two numbers ."))
         self.pushButton.setText(_translate("MainWindow", "Run Tests"))
         self.pushButton_2.setText(_translate("MainWindow", "Submit"))
-        self.label_4.setText(_translate("MainWindow", "Total Test Cases : 1"))
+        self.label_4.setText(_translate("MainWindow", "Total Test Cases : 0"))
         self.label_5.setText(_translate("MainWindow", "Passed : 0"))
         self.label_6.setText(_translate("MainWindow", "Failed : 0"))
         self.label_3.setText(_translate("MainWindow", "Submitted : No"))
@@ -168,14 +169,28 @@ class Ui_MainWindow(object):
             self.label_7.setText("STD output : None")
 
 class Code_window(QtWidgets.QMainWindow,Ui_MainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, question_data ,parent=None):
         super().__init__(parent)
-        self.setupUi(self)
+        self.setupUi(self,question_id=question_data["question_id"])
+        self.label.setText(question_data["title"])
+        self.label_2.setText(question_data["description"])
+        self.label_4.setText(f"Total Test Cases : {len(question_data['testcases'])}")
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
-    ui = Code_window()
+    data = {
+        "question_id" : "00760d04-62cd-4f03-a609-af5439a3fc31",
+        "title":"Add two numbers in python.",
+        "description": "Addition is important part of math .",
+        "testcases": {
+                "ce94522f-dc71-4f41-ba0d-47611feb575c": {
+                    "input": "a=1\nb=1\n",
+                    "output": "2"
+                }
+            }
+    }
+    ui = Code_window(question_data=data)
     ui.show()
     sys.exit(app.exec_())

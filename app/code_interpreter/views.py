@@ -8,6 +8,7 @@ from io import StringIO
 from contextlib import redirect_stdout
 import autopep8
 from .serializers import CodingQuestionSerializer, TestCaseSerializer,SubmissionSerializer
+from exam.models import Exam
 
 class CodingQuestionListCreate(generics.ListCreateAPIView):
     queryset = CodingQuestion.objects.all()
@@ -16,12 +17,13 @@ class CodingQuestionListCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         coding_question_instance = serializer.save()
         test_cases_data = self.request.data.get('testcases', [])
+
         print(test_cases_data)
         for test_case_data in test_cases_data:
             TestCase.objects.create(
                 question=coding_question_instance,
                 input=test_case_data.get('input'),
-                output=test_case_data.get('output')
+                output=test_case_data.get('output'),
             )
 
 class TestCaseListCreate(generics.ListCreateAPIView):
