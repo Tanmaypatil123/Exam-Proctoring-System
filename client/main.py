@@ -208,13 +208,17 @@ class Window(QtWidgets.QMainWindow):
             button.clicked.connect(lambda checked , q = question_number : self.load_question_backend(q))
             self.question_window.gridLayout.addWidget(button,row,col)
             self.buttons.append(button)
-        button = QPushButton(f"{question_number + 1}")
+
+        
+        button = QPushButton(f"code {question_number + 1}")
         self.question_window.gridLayout.addWidget(button,row,col + 1)
         button.clicked.connect(self.go_to_code_window)
         # coding_window = Code_window()
 
     def go_to_code_window(self):
-        coding_window = Code_window()
+        print(list(self.response["coding_questions"].keys())[0])
+        que_id = list(self.response["coding_questions"].keys())[0]
+        coding_window = Code_window(question_id=que_id,question_data=self.response["coding_questions"][str(que_id)])
         self.stacked_widget.addWidget(coding_window)
         self.stacked_widget.setCurrentWidget(coding_window)
 

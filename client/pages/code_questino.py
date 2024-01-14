@@ -169,9 +169,9 @@ class Ui_MainWindow(object):
             self.label_7.setText("STD output : None")
 
 class Code_window(QtWidgets.QMainWindow,Ui_MainWindow):
-    def __init__(self, question_data ,parent=None):
+    def __init__(self, question_id ,question_data ,parent=None):
         super().__init__(parent)
-        self.setupUi(self,question_id=question_data["question_id"])
+        self.setupUi(self,question_id=question_id)
         self.label.setText(question_data["title"])
         self.label_2.setText(question_data["description"])
         self.label_4.setText(f"Total Test Cases : {len(question_data['testcases'])}")
@@ -181,7 +181,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     data = {
-        "question_id" : "00760d04-62cd-4f03-a609-af5439a3fc31",
         "title":"Add two numbers in python.",
         "description": "Addition is important part of math .",
         "testcases": {
@@ -191,6 +190,6 @@ if __name__ == "__main__":
                 }
             }
     }
-    ui = Code_window(question_data=data)
+    ui = Code_window(question_id="00760d04-62cd-4f03-a609-af5439a3fc31",question_data=data)
     ui.show()
     sys.exit(app.exec_())
