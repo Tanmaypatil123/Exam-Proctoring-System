@@ -1,4 +1,3 @@
-
 # import ultralytics
 # import numpy as np
 # import cv2
@@ -26,12 +25,12 @@ CLASS_NAMES_DICT = model.model.names
 print(CLASS_NAMES_DICT)
 
 # Define the classes of interest (car, motorcycle, bus, truck)
-classes_of_interest = ['car', 'motorcycle', 'bus', 'truck']
+classes_of_interest = ["car", "motorcycle", "bus", "truck"]
 
 # Image path
 image_path = r"sysllama.png"
 output_path = r"C:\Users\patil\Desktop\SIH Project\Ctrl-Alt-Defeat\output_image.png"
 
 # Make predictions on the image
-predictions = model(image_path, show=True,verbose=False,save_txt = True)
+predictions = model(image_path, show=True, verbose=False, save_txt=True)
 print(predictions)

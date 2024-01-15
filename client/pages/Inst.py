@@ -23,14 +23,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setStyleSheet("font: 18pt \"MS Shell Dlg 2\";")
+        self.label.setStyleSheet('font: 18pt "MS Shell Dlg 2";')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_4.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_4.setObjectName("label_4")
         self.verticalLayout.addWidget(self.label_4)
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
@@ -40,7 +40,7 @@ class Ui_MainWindow(object):
         self.checkBox.setObjectName("checkBox")
         self.verticalLayout.addWidget(self.checkBox)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_5.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_5.setText("")
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setWordWrap(True)
@@ -74,20 +74,27 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Instruction Page"))
-        self.label_4.setText(_translate("MainWindow", "Instruction For Exam As Follow:"))
-        self.label_2.setText(_translate("MainWindow", "1.Exam has Total 15 Question.\n"
-"2.Total Exam timining is 30 Minutes\n"
-"3.Camera should be on during test\n"
-"4.Do not Close the window otherwise the test will be submitted automatically \n"
-"\n"
-"\n"
-"\n"
-"Best of Luck!"))
+        self.label_4.setText(
+            _translate("MainWindow", "Instruction For Exam As Follow:")
+        )
+        self.label_2.setText(
+            _translate(
+                "MainWindow",
+                "1.Exam has Total 15 Question.\n"
+                "2.Total Exam timining is 30 Minutes\n"
+                "3.Camera should be on during test\n"
+                "4.Do not Close the window otherwise the test will be submitted automatically \n"
+                "\n"
+                "\n"
+                "\n"
+                "Best of Luck!",
+            )
+        )
         self.checkBox.setText(_translate("MainWindow", "Agree and Continue"))
         self.pushButton.setText(_translate("MainWindow", "Proceed"))
 
 
-class INstructiionWindow(QtWidgets.QMainWindow,Ui_MainWindow):
+class INstructiionWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         # self.selected_answer = None
@@ -96,6 +103,7 @@ class INstructiionWindow(QtWidgets.QMainWindow,Ui_MainWindow):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     ui = INstructiionWindow()

@@ -37,19 +37,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.SystemCHeckPageLabel.setFont(font)
-        self.SystemCHeckPageLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.SystemCHeckPageLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.SystemCHeckPageLabel.setObjectName("SystemCHeckPageLabel")
         self.AntiVCheckLabel = QtWidgets.QLabel(self.frame_2)
         self.AntiVCheckLabel.setGeometry(QtCore.QRect(20, 100, 311, 41))
@@ -59,19 +61,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.AntiVCheckLabel.setFont(font)
-        self.AntiVCheckLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.AntiVCheckLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.AntiVCheckLabel.setObjectName("AntiVCheckLabel")
         self.ASPB = QtWidgets.QProgressBar(self.frame_2)
         self.ASPB.setGeometry(QtCore.QRect(20, 150, 118, 23))
@@ -85,19 +89,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.HWCheckLabel.setFont(font)
-        self.HWCheckLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.HWCheckLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.HWCheckLabel.setObjectName("HWCheckLabel")
         self.CHPB = QtWidgets.QProgressBar(self.frame_2)
         self.CHPB.setGeometry(QtCore.QRect(400, 150, 118, 23))
@@ -111,19 +117,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.NetworkConnLabel.setFont(font)
-        self.NetworkConnLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.NetworkConnLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.NetworkConnLabel.setObjectName("NetworkConnLabel")
         self.NCPB = QtWidgets.QProgressBar(self.frame_2)
         self.NCPB.setGeometry(QtCore.QRect(20, 260, 118, 23))
@@ -141,19 +149,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.ClosingTabsLabel.setFont(font)
-        self.ClosingTabsLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.ClosingTabsLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.ClosingTabsLabel.setObjectName("ClosingTabsLabel")
         self.SRPB = QtWidgets.QProgressBar(self.frame_2)
         self.SRPB.setGeometry(QtCore.QRect(20, 350, 118, 23))
@@ -167,19 +177,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.BackProcessLabel.setFont(font)
-        self.BackProcessLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.BackProcessLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.BackProcessLabel.setObjectName("BackProcessLabel")
         self.BackgroundPB = QtWidgets.QProgressBar(self.frame_2)
         self.BackgroundPB.setGeometry(QtCore.QRect(410, 350, 118, 23))
@@ -193,19 +205,21 @@ class System_check_page(object):
         font.setBold(True)
         font.setWeight(75)
         self.SysReqLabel.setFont(font)
-        self.SysReqLabel.setStyleSheet("/* Define a class for your label */\n"
-".QLabel {\n"
-"    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
-"    font-size: 16px; /* Adjust the font size as needed */\n"
-"    font-weight: bold; /* Make the text bold if desired */\n"
-"    color: #333; /* Set the text color to a Shopify-like color */\n"
-"    text-align: center; /* Center the text horizontally */\n"
-"    padding: 10px; /* Add some padding around the text */\n"
-"    background-color: #f4f4f4; /* Set a background color */\n"
-"    border: 1px solid #ccc; /* Add a border for a clean look */\n"
-"    border-radius: 5px; /* Round the corners of the label */\n"
-"}\n"
-"")
+        self.SysReqLabel.setStyleSheet(
+            "/* Define a class for your label */\n"
+            ".QLabel {\n"
+            "    font-family: Arial, sans-serif; /* Use a web-safe font or a custom Shopify font if available */\n"
+            "    font-size: 16px; /* Adjust the font size as needed */\n"
+            "    font-weight: bold; /* Make the text bold if desired */\n"
+            "    color: #333; /* Set the text color to a Shopify-like color */\n"
+            "    text-align: center; /* Center the text horizontally */\n"
+            "    padding: 10px; /* Add some padding around the text */\n"
+            "    background-color: #f4f4f4; /* Set a background color */\n"
+            "    border: 1px solid #ccc; /* Add a border for a clean look */\n"
+            "    border-radius: 5px; /* Round the corners of the label */\n"
+            "}\n"
+            ""
+        )
         self.SysReqLabel.setObjectName("SysReqLabel")
         self.horizontalLayout.addWidget(self.frame_2)
         self.horizontalLayout_2.addWidget(self.frame)
@@ -220,22 +234,34 @@ class System_check_page(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.SystemCHeckPageLabel.setText(_translate("MainWindow", "Checking Your System Status..."))
-        self.AntiVCheckLabel.setText(_translate("MainWindow", "Checking for Antivirus Software"))
+        self.SystemCHeckPageLabel.setText(
+            _translate("MainWindow", "Checking Your System Status...")
+        )
+        self.AntiVCheckLabel.setText(
+            _translate("MainWindow", "Checking for Antivirus Software")
+        )
         self.HWCheckLabel.setText(_translate("MainWindow", "Checking Hardware"))
-        self.NetworkConnLabel.setText(_translate("MainWindow", "Checking Network Connectivity"))
+        self.NetworkConnLabel.setText(
+            _translate("MainWindow", "Checking Network Connectivity")
+        )
         self.ClosingTabsLabel.setText(_translate("MainWindow", "Closing Other Tabs"))
-        self.BackProcessLabel.setText(_translate("MainWindow", "Checking Background Processes"))
-        self.SysReqLabel.setText(_translate("MainWindow", "Checking system requirements"))
+        self.BackProcessLabel.setText(
+            _translate("MainWindow", "Checking Background Processes")
+        )
+        self.SysReqLabel.setText(
+            _translate("MainWindow", "Checking system requirements")
+        )
 
 
-class SystemCheckWindow(QtWidgets.QMainWindow,System_check_page):
+class SystemCheckWindow(QtWidgets.QMainWindow, System_check_page):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
 
+
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     ui = SystemCheckWindow()

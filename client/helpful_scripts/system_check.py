@@ -7,7 +7,8 @@ import urllib.request
 
 
 class System_check:
-    state : dict = {}
+    state: dict = {}
+
     def __init__(self) -> None:
         pass
 
@@ -18,31 +19,31 @@ class System_check:
             self.check_system_version,
             self.check_microphone,
             self.check_camera,
-            self.check_internet_connection
+            self.check_internet_connection,
         ]
 
-        for i in funcs :
+        for i in funcs:
             if i() != True:
                 return False
-        
+
         return True
 
     def check_ram(self):
-        
-        total_ram = psutil.virtual_memory().total/(1024 ** 3)
+        total_ram = psutil.virtual_memory().total / (1024**3)
         self.state["total_ram"] = total_ram
         return total_ram > 4
+
     def check_os(self):
         system = platform.system()
         self.state["os"] = system
-        return system in ['Windows', 'Linux']
-    
+        return system in ["Windows", "Linux"]
+
     def check_system_version(self):
         system_version = platform.release()
         # print(system_version)
         self.state["os_version"] = system_version
         return bool(system_version)
-    
+
     def check_microphone(self):
         p = pyaudio.PyAudio()
 
@@ -62,6 +63,7 @@ class System_check:
             return False
         finally:
             p.terminate()
+
     def check_camera(self):
         try:
             cap = cv2.VideoCapture(0)
@@ -85,7 +87,7 @@ class System_check:
 
     def get_state(self):
         return self.state
-    
+
     def check_internet_connection(self):
         try:
             urllib.request.urlopen("https://www.google.com", timeout=2)
@@ -96,6 +98,7 @@ class System_check:
             print("No internet connection or connection is unstable.")
             self.state["network"] = "disconnected"
             return False
+
 
 # obj = Systum_check()
 # obj.check()

@@ -13,12 +13,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from dotenv import load_dotenv
+
 # from .config import code_question_id_loadder
 import requests
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow,question_id):
+    def setupUi(self, MainWindow, question_id):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -34,12 +35,12 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(self.widget)
-        self.label.setStyleSheet("font: 12pt \"MS Shell Dlg 2\";")
+        self.label.setStyleSheet('font: 12pt "MS Shell Dlg 2";')
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_2.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
@@ -51,7 +52,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.widget_2)
         self.plainTextEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.plainTextEdit.setObjectName("plainTextEdit")
-        self.plainTextEdit.setFont(QFont("Consolas", 12)) 
+        self.plainTextEdit.setFont(QFont("Consolas", 12))
         self.plainTextEdit.setStyleSheet("background-color: black; color: white;")
         self.verticalLayout_2.addWidget(self.plainTextEdit)
         self.verticalLayout.addWidget(self.widget_2)
@@ -59,18 +60,20 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout.addItem(spacerItem)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setMinimumSize(QtCore.QSize(111, 31))
         self.pushButton.setMaximumSize(QtCore.QSize(111, 31))
-        self.pushButton.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";")
+        self.pushButton.setStyleSheet('font: 9pt "MS Shell Dlg 2";')
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setMinimumSize(QtCore.QSize(111, 31))
         self.pushButton_2.setMaximumSize(QtCore.QSize(111, 31))
-        self.pushButton_2.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";")
+        self.pushButton_2.setStyleSheet('font: 9pt "MS Shell Dlg 2";')
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2)
         self.verticalLayout_4.addLayout(self.horizontalLayout)
@@ -84,25 +87,25 @@ class Ui_MainWindow(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label_4 = QtWidgets.QLabel(self.widget_3)
-        self.label_4.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_4.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setWordWrap(True)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_3.addWidget(self.label_4)
         self.label_5 = QtWidgets.QLabel(self.widget_3)
-        self.label_5.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_5.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setWordWrap(True)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_3.addWidget(self.label_5)
         self.label_6 = QtWidgets.QLabel(self.widget_3)
-        self.label_6.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_6.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setWordWrap(True)
         self.label_6.setObjectName("label_6")
         self.verticalLayout_3.addWidget(self.label_6)
         self.label_3 = QtWidgets.QLabel(self.widget_3)
-        self.label_3.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_3.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setWordWrap(True)
         self.label_3.setObjectName("label_3")
@@ -113,13 +116,17 @@ class Ui_MainWindow(object):
         self.label_7 = QtWidgets.QLabel(self.widget_3)
         self.label_7.setMinimumSize(QtCore.QSize(171, 91))
         self.label_7.setMaximumSize(QtCore.QSize(171, 16777215))
-        self.label_7.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
-        self.label_7.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.label_7.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
+        self.label_7.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
+        )
         self.label_7.setWordWrap(True)
         self.label_7.setObjectName("label_7")
         self.horizontalLayout_2.addWidget(self.label_7)
         self.horizontalLayout_3.addLayout(self.horizontalLayout_2)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_3.addItem(spacerItem1)
         self.verticalLayout_4.addWidget(self.widget_3)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -138,8 +145,15 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Question : Print Addition of two numbers ."))
-        self.label_2.setText(_translate("MainWindow", "you have given two input numbers \'a\' and \'b\'. just print the addition of two numbers ."))
+        self.label.setText(
+            _translate("MainWindow", "Question : Print Addition of two numbers .")
+        )
+        self.label_2.setText(
+            _translate(
+                "MainWindow",
+                "you have given two input numbers 'a' and 'b'. just print the addition of two numbers .",
+            )
+        )
         self.pushButton.setText(_translate("MainWindow", "Run Tests"))
         self.pushButton_2.setText(_translate("MainWindow", "Submit"))
         self.label_4.setText(_translate("MainWindow", "Total Test Cases : 0"))
@@ -152,44 +166,53 @@ class Ui_MainWindow(object):
         code = self.plainTextEdit.toPlainText()
         response = requests.post(
             "http://127.0.0.1:8000/api/code/submit/",
-            data = {
-                "question_id" : self.question,
-                "code" : code
-           }
+            data={"question_id": self.question, "code": code},
         )
         print(response.json())
         response = response.json()
-        self.label_4.setText(f"Total Test Cases : {response['passed'] + response['failed']}")
+        self.label_4.setText(
+            f"Total Test Cases : {response['passed'] + response['failed']}"
+        )
         self.label_5.setText(f"Passed : {response['passed']}")
         self.label_6.setText(f"Failed : {response['failed']}")
-        if response['failed'] >= 1:
-            if len(response['failed_details']) > 0 and "error" in response['failed_details'][0]:
-                self.label_7.setText(f"STD output : {response['failed_details'][0]['error']}")
-        else :
+        if response["failed"] >= 1:
+            if (
+                len(response["failed_details"]) > 0
+                and "error" in response["failed_details"][0]
+            ):
+                self.label_7.setText(
+                    f"STD output : {response['failed_details'][0]['error']}"
+                )
+        else:
             self.label_7.setText("STD output : None")
 
-class Code_window(QtWidgets.QMainWindow,Ui_MainWindow):
-    def __init__(self, question_id ,question_data ,parent=None):
+
+class Code_window(QtWidgets.QMainWindow, Ui_MainWindow):
+    def __init__(self, question_id, question_data, parent=None):
         super().__init__(parent)
-        self.setupUi(self,question_id=question_id)
+        self.setupUi(self, question_id=question_id)
         self.label.setText(question_data["title"])
         self.label_2.setText(question_data["description"])
         self.label_4.setText(f"Total Test Cases : {len(question_data['testcases'])}")
 
+
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     data = {
-        "title":"Add two numbers in python.",
+        "title": "Add two numbers in python.",
         "description": "Addition is important part of math .",
         "testcases": {
-                "ce94522f-dc71-4f41-ba0d-47611feb575c": {
-                    "input": "a=1\nb=1\n",
-                    "output": "2"
-                }
+            "ce94522f-dc71-4f41-ba0d-47611feb575c": {
+                "input": "a=1\nb=1\n",
+                "output": "2",
             }
+        },
     }
-    ui = Code_window(question_id="00760d04-62cd-4f03-a609-af5439a3fc31",question_data=data)
+    ui = Code_window(
+        question_id="00760d04-62cd-4f03-a609-af5439a3fc31", question_data=data
+    )
     ui.show()
     sys.exit(app.exec_())

@@ -11,7 +11,7 @@ CLASS_NAMES_DICT = model.model.names
 print(CLASS_NAMES_DICT)
 
 # Define the classes of interest (car, motorcycle, bus, truck)
-classes_of_interest = ['car', 'motorcycle', 'bus', 'truck']
+classes_of_interest = ["car", "motorcycle", "bus", "truck"]
 
 # Image path
 image_path = r"lol.jpeg"
@@ -52,13 +52,13 @@ for item in os.listdir(folder_path):
 
 import sys
 import cv2
-from PyQt5.QtCore import QObject, Qt,QThread,pyqtSignal,QTimer
+from PyQt5.QtCore import QObject, Qt, QThread, pyqtSignal, QTimer
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 
 class Phone_worker(QThread):
-    updated_frame = pyqtSignal(QImage,int)
+    updated_frame = pyqtSignal(QImage, int)
 
     def __init__(self) -> None:
         super().__init__()
@@ -66,15 +66,15 @@ class Phone_worker(QThread):
         self.model.fuse()
         self.cap = cv2.VideoCapture(0)
         self.running = True
-        
+
     def run(self):
         # while self.running:
         #     ret , frame = self.cap.read()
-        #     if ret : 
+        #     if ret :
         #         prediction = self.model()
         pass
 
-    def detectObject(self,image_path):
+    def detectObject(self, image_path):
         prediction = model(image_path, verbose=False, save_txt=True)
         txt_file_path = f"runs/detect/predict/labels/{image_path}.txt"
         file_exists = os.path.exists(txt_file_path)
@@ -100,4 +100,3 @@ class Phone_worker(QThread):
                 except Exception as e:
                     print(f"Failed to remove folder: {item_path} - {e}")
         return result
-    

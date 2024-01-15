@@ -7,58 +7,138 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
-        ('exam', '0001_initial'),
+        ("auth", "0012_alter_user_first_name_max_length"),
+        ("exam", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserModel',
+            name="UserModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('name', models.CharField(max_length=100)),
-                ('is_active', models.BooleanField(default=True)),
-                ('is_admin', models.BooleanField(default=False)),
-                ('tc', models.BooleanField(blank=True, default=False, null=True)),
-                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
-                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("password", models.CharField(max_length=128, verbose_name="password")),
+                (
+                    "last_login",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="last login"
+                    ),
+                ),
+                (
+                    "is_superuser",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Designates that this user has all permissions without explicitly assigning them.",
+                        verbose_name="superuser status",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("name", models.CharField(max_length=100)),
+                ("is_active", models.BooleanField(default=True)),
+                ("is_admin", models.BooleanField(default=False)),
+                ("tc", models.BooleanField(blank=True, default=False, null=True)),
+                (
+                    "groups",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+                        related_name="user_set",
+                        related_query_name="user",
+                        to="auth.group",
+                        verbose_name="groups",
+                    ),
+                ),
+                (
+                    "user_permissions",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="Specific permissions for this user.",
+                        related_name="user_set",
+                        related_query_name="user",
+                        to="auth.permission",
+                        verbose_name="user permissions",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Feedback',
+            name="Feedback",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('experience', models.CharField(blank=True, max_length=50, null=True)),
-                ('feedback', models.CharField(blank=True, max_length=300, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("experience", models.CharField(blank=True, max_length=50, null=True)),
+                ("feedback", models.CharField(blank=True, max_length=300, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='StudentAuthentication',
+            name="StudentAuthentication",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('student', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "student",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100)),
-                ('email', models.EmailField(default='abc@gmail.com', max_length=254)),
-                ('password', models.CharField(max_length=10)),
-                ('exam', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='exam.exam')),
-                ('organization', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("email", models.EmailField(default="abc@gmail.com", max_length=254)),
+                ("password", models.CharField(max_length=10)),
+                (
+                    "exam",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="exam.exam"
+                    ),
+                ),
+                (
+                    "organization",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

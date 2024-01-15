@@ -4,29 +4,43 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='DemoFile',
+            name="DemoFile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.FileField(default=None, upload_to='demofile')),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file", models.FileField(default=None, upload_to="demofile")),
+                ("is_active", models.BooleanField(default=True)),
             ],
         ),
         migrations.CreateModel(
-            name='StudentData',
+            name="StudentData",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=100)),
-                ('last_name', models.CharField(max_length=100)),
-                ('email', models.EmailField(max_length=100)),
-                ('passing_year', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=100)),
+                ("last_name", models.CharField(max_length=100)),
+                ("email", models.EmailField(max_length=100)),
+                ("passing_year", models.IntegerField()),
             ],
         ),
     ]

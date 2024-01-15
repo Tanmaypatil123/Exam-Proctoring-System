@@ -3,9 +3,17 @@ import cv2
 import os
 import shutil
 from ultralytics import YOLO
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QPushButton, QWidget
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QLabel,
+    QVBoxLayout,
+    QPushButton,
+    QWidget,
+)
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
+
 
 class DetectionThread(QThread):
     finished = pyqtSignal(bool)
@@ -39,7 +47,8 @@ class DetectionThread(QThread):
         print(f"Deleting directory: {dir_path}")
         # Use shutil.rmtree to remove the 'runs' directory and its contents
         shutil.rmtree(dir_path)
-        
+
+
 class Worker(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -84,12 +93,15 @@ class Worker(QMainWindow):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             h, w, ch = frame.shape
             bytes_per_line = ch * w
-            convert_to_Qt_format = QImage(frame.data, w, h, bytes_per_line, QImage.Format_RGB888)
+            convert_to_Qt_format = QImage(
+                frame.data, w, h, bytes_per_line, QImage.Format_RGB888
+            )
             image = QPixmap.fromImage(convert_to_Qt_format)
             self.image_label.setPixmap(image)
 
     def detectionFinished(self, result):
         print("Result:", result)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

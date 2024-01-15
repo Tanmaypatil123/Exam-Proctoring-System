@@ -24,16 +24,18 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setMinimumSize(QtCore.QSize(161, 41))
         self.label.setMaximumSize(QtCore.QSize(161, 41))
-        self.label.setStyleSheet("font: 75 12pt \"MS Shell Dlg 2\";")
+        self.label.setStyleSheet('font: 75 12pt "MS Shell Dlg 2";')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout.addItem(spacerItem)
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setMinimumSize(QtCore.QSize(161, 41))
         self.label_2.setMaximumSize(QtCore.QSize(161, 41))
-        self.label_2.setStyleSheet("font: 75 12pt \"MS Shell Dlg 2\";")
+        self.label_2.setStyleSheet('font: 75 12pt "MS Shell Dlg 2";')
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout.addWidget(self.label_2)
@@ -44,7 +46,9 @@ class Ui_MainWindow(object):
         self.widget.setObjectName("widget")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        spacerItem1 = QtWidgets.QSpacerItem(90, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            90, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_3.addItem(spacerItem1)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
@@ -75,7 +79,9 @@ class Ui_MainWindow(object):
         # self.pushButton_6.setObjectName("pushButton_6")
         # self.gridLayout.addWidget(self.pushButton_6, 1, 0, 1, 1)
         self.horizontalLayout_3.addLayout(self.gridLayout)
-        spacerItem2 = QtWidgets.QSpacerItem(90, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            90, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_3.addItem(spacerItem2)
         self.verticalScrollBar = QtWidgets.QScrollBar(self.widget)
         self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
@@ -115,17 +121,17 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Submit"))
 
 
-class QuestionWindow(QtWidgets.QMainWindow,Ui_MainWindow):
+class QuestionWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
-        
+
         # self.pushButton.clicked.connect(self.get_email_password)
-    
-        
+
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     ui = QuestionWindow()

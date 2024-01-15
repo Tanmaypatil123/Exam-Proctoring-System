@@ -129,18 +129,23 @@ import shutil
 from ultralytics import YOLO
 import sys
 
+
 class FaceDetectionWorker(QObject):
     update_frame = pyqtSignal(QImage, int)
 
     def __init__(self):
         super().__init__()
-        self.face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+        self.face_cascade = cv2.CascadeClassifier(
+            cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+        )
 
     def detect_faces(self, frame):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = self.face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30))
+        faces = self.face_cascade.detectMultiScale(
+            gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30)
+        )
 
-        for (x, y, w, h) in faces:
+        for x, y, w, h in faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
         num_faces = len(faces)
@@ -151,7 +156,9 @@ class FaceDetectionWorker(QObject):
         rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = rgb_image.shape
         bytes_per_line = ch * w
-        convert_to_qt_format = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+        convert_to_qt_format = QImage(
+            rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888
+        )
         return convert_to_qt_format
 
 
@@ -204,7 +211,7 @@ class MainWindow(QMainWindow):
         self.face_worker.update_frame.connect(self.display_frame)
         self.thread_face_detection.started.connect(self.perform_face_detection)
         self.thread_yolo_detection.started.connect(self.perform_yolo_detection)
-        
+
         self.thread_face_detection.start()
         self.thread_yolo_detection.start()
 
@@ -240,7 +247,7 @@ class MainWindow(QMainWindow):
         event.accept()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()

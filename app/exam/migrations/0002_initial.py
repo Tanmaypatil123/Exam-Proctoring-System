@@ -6,49 +6,62 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('exam', '0001_initial'),
+        ("exam", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='warning_count',
-            name='student',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.student'),
+            model_name="warning_count",
+            name="student",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="users.student"
+            ),
         ),
         migrations.AddField(
-            model_name='warning',
-            name='student',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.student'),
+            model_name="warning",
+            name="student",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="users.student"
+            ),
         ),
         migrations.AddField(
-            model_name='response',
-            name='Response',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='exam.answeroptions'),
+            model_name="response",
+            name="Response",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="exam.answeroptions"
+            ),
         ),
         migrations.AddField(
-            model_name='response',
-            name='student',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.student'),
+            model_name="response",
+            name="student",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="users.student"
+            ),
         ),
         migrations.AddField(
-            model_name='questions',
-            name='exam',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='exam.exam'),
+            model_name="questions",
+            name="exam",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="exam.exam"
+            ),
         ),
         migrations.AddField(
-            model_name='exam',
-            name='organisation',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="exam",
+            name="organisation",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AddField(
-            model_name='answeroptions',
-            name='question',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='exam.questions'),
+            model_name="answeroptions",
+            name="question",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="exam.questions"
+            ),
         ),
     ]

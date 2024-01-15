@@ -24,7 +24,7 @@ class Ui_Dialog(object):
         self.pushButton.setObjectName("pushButton")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(50, 10, 101, 16))
-        self.label.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label.setObjectName("label")
         self.widget = QtWidgets.QWidget(Dialog)
         self.widget.setGeometry(QtCore.QRect(0, 10, 51, 51))
@@ -40,20 +40,26 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.pushButton.setText(_translate("Dialog", "OK"))
         self.label.setText(_translate("Dialog", "Warning !"))
+
+
 import resources_rc
 
 
-class INstructiionWindow(QtWidgets.QMainWindow,Ui_Dialog):
+class WarningWindow(QtWidgets.QMainWindow, Ui_Dialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         # self.selected_answer = None
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.close_widget)
 
+    def close_widget(self):
+        self.close()
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
-    ui = INstructiionWindow()
+    ui = WarningWindow()
     ui.show()
     sys.exit(app.exec_())

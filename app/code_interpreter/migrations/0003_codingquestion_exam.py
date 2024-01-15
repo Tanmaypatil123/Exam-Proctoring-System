@@ -5,17 +5,20 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('exam', '0002_initial'),
-        ('code_interpreter', '0002_initial'),
+        ("exam", "0002_initial"),
+        ("code_interpreter", "0002_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='codingquestion',
-            name='exam',
-            field=models.ForeignKey(default='028c1bb8-db3c-4aa9-b994-8557cdb824d6', on_delete=django.db.models.deletion.CASCADE, to='exam.exam'),
+            model_name="codingquestion",
+            name="exam",
+            field=models.ForeignKey(
+                default="028c1bb8-db3c-4aa9-b994-8557cdb824d6",
+                on_delete=django.db.models.deletion.CASCADE,
+                to="exam.exam",
+            ),
             preserve_default=False,
         ),
     ]

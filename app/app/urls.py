@@ -22,11 +22,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',home),
-    path('api/',include('users.urls')),
+    path("admin/", admin.site.urls),
+    path("", home),
+    path("api/", include("users.urls")),
     # path('register/',register),
-    path('management/',include('management.urls')),
-    path('api/exam/',include('exam.urls')),
-    path('api/code/',include('code_interpreter.urls'))
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("management/", include("management.urls")),
+    path("api/exam/", include("exam.urls")),
+    path("api/code/", include("code_interpreter.urls")),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

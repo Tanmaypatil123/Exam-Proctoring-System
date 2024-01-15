@@ -25,7 +25,9 @@ class Ui_Dialog(object):
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setMinimumSize(QtCore.QSize(0, 31))
         self.label.setMaximumSize(QtCore.QSize(16777215, 31))
-        self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.label.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop
+        )
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.horizontalLayout_2.addWidget(self.label)
@@ -47,9 +49,12 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label.setText(_translate("Dialog", "Warning text"))
         self.pushButton.setText(_translate("Dialog", "Close Window"))
+
+
 import resources_rc
 
-class INstructiionWindow(QtWidgets.QMainWindow,Ui_Dialog):
+
+class INstructiionWindow(QtWidgets.QMainWindow, Ui_Dialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         # self.selected_answer = None
@@ -58,6 +63,7 @@ class INstructiionWindow(QtWidgets.QMainWindow,Ui_Dialog):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     ui = INstructiionWindow()

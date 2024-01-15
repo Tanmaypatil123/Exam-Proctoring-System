@@ -15,11 +15,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 561)
-        MainWindow.setStyleSheet("QMainWindow{\n"
-"background-color: #F0F0F4;\n"
-"}\n"
-"\n"
-"")
+        MainWindow.setStyleSheet(
+            "QMainWindow{\n" "background-color: #F0F0F4;\n" "}\n" "\n" ""
+        )
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -37,9 +35,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.sYSTEM_LABEL.setFont(font)
-        self.sYSTEM_LABEL.setStyleSheet("QLabel { \n"
-"color: #3baef0; \n"
-"}")
+        self.sYSTEM_LABEL.setStyleSheet("QLabel { \n" "color: #3baef0; \n" "}")
         self.sYSTEM_LABEL.setObjectName("sYSTEM_LABEL")
         self.horizontalLayout.addWidget(self.sYSTEM_LABEL)
         self.verticalLayout.addWidget(self.frame)
@@ -166,7 +162,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.sYSTEM_LABEL.setText(_translate("MainWindow", "System check is under process"))
+        self.sYSTEM_LABEL.setText(
+            _translate("MainWindow", "System check is under process")
+        )
         self.F1_LAB1.setText(_translate("MainWindow", "CHECKING OS"))
         self.F2_LAB2.setText(_translate("MainWindow", "SYSTEM VERSION "))
         self.F4_LAB4.setText(_translate("MainWindow", "CAMERA CHECK"))
@@ -175,7 +173,7 @@ class Ui_MainWindow(object):
         self.F3_LAB3.setText(_translate("MainWindow", "RAM CHECK"))
 
 
-class INstructiionWindow(QtWidgets.QMainWindow,Ui_MainWindow):
+class INstructiionWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         # self.selected_answer = None
@@ -184,6 +182,7 @@ class INstructiionWindow(QtWidgets.QMainWindow,Ui_MainWindow):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     ui = INstructiionWindow()

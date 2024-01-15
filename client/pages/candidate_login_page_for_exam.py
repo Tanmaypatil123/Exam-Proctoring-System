@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 
+
 class Candidate_login(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -54,19 +55,21 @@ class Candidate_login(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame_4)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.pushButton = QtWidgets.QPushButton(self.frame_4)
-        self.pushButton.setStyleSheet("QPushButton {\n"
-"    background-color: #2c9981; /* Blue background color */\n"
-"    color: \'#2c9932; /* Text color */\n"
-"    border: 1px solid #0a84ff; /* Blue border */\n"
-"    border-radius: 5px; /* Rounded corners */\n"
-"    padding: 10px 20px; /* Padding around the text */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #007acc; /* Darker blue on hover */\n"
-"    border: 1px solid #007acc; /* Darker blue border on hover */\n"
-"}\n"
-"")
+        self.pushButton.setStyleSheet(
+            "QPushButton {\n"
+            "    background-color: #2c9981; /* Blue background color */\n"
+            "    color: '#2c9932; /* Text color */\n"
+            "    border: 1px solid #0a84ff; /* Blue border */\n"
+            "    border-radius: 5px; /* Rounded corners */\n"
+            "    padding: 10px 20px; /* Padding around the text */\n"
+            "}\n"
+            "\n"
+            "QPushButton:hover {\n"
+            "    background-color: #007acc; /* Darker blue on hover */\n"
+            "    border: 1px solid #007acc; /* Darker blue border on hover */\n"
+            "}\n"
+            ""
+        )
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_4.addWidget(self.pushButton)
         self.verticalLayout.addWidget(self.frame_4, 0, QtCore.Qt.AlignHCenter)
@@ -87,17 +90,17 @@ class Candidate_login(object):
         self.pushButton.setText(_translate("MainWindow", "Proceed "))
 
 
-class Candidate_login_Window(QtWidgets.QMainWindow,Candidate_login):
+class Candidate_login_Window(QtWidgets.QMainWindow, Candidate_login):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
-        
+
         # self.pushButton.clicked.connect(self.get_email_password)
-    
-        
+
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     ui = Candidate_login_Window()

@@ -4,12 +4,15 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QImage, QPixmap
 
+
 class Worker(QThread):
     update_frame = pyqtSignal(QImage, int)
 
     def __init__(self):
         super().__init__()
-        self.face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+        self.face_cascade = cv2.CascadeClassifier(
+            cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+        )
         self.cap = cv2.VideoCapture(0)
         self.running = True
         self.no_persons_time = 0
@@ -19,13 +22,17 @@ class Worker(QThread):
             ret, frame = self.cap.read()
             if ret:
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                faces = self.face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30))
+                faces = self.face_cascade.detectMultiScale(
+                    gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30)
+                )
 
                 num_persons = len(faces)
 
                 if num_persons == 0:
                     self.no_persons_time += 1
-                    if self.no_persons_time >= 90:  # 3 seconds threshold (30 frames per second)
+                    if (
+                        self.no_persons_time >= 90
+                    ):  # 3 seconds threshold (30 frames per second)
                         image = self.convert_frame(frame)
                         self.update_frame.emit(image, num_persons)
                 else:
@@ -35,7 +42,7 @@ class Worker(QThread):
                     image = self.convert_frame(frame)
                     self.update_frame.emit(image, num_persons)
                 else:
-                    for (x, y, w, h) in faces:
+                    for x, y, w, h in faces:
                         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
                     image = self.convert_frame(frame)
                     self.update_frame.emit(image, num_persons)
@@ -44,7 +51,9 @@ class Worker(QThread):
         rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = rgb_image.shape
         bytes_per_line = ch * w
-        convert_to_qt_format = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+        convert_to_qt_format = QImage(
+            rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888
+        )
         return convert_to_qt_format
 
     def stop(self):
@@ -80,7 +89,7 @@ class MainWindow(QMainWindow):
         event.accept()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()

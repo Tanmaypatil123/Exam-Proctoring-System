@@ -23,21 +23,23 @@ class FeedBackpage(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setStyleSheet("font: 18pt \"MS Shell Dlg 2\";")
+        self.label.setStyleSheet('font: 18pt "MS Shell Dlg 2";')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_6.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setWordWrap(True)
         self.label_6.setObjectName("label_6")
         self.verticalLayout.addWidget(self.label_6)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_2.addItem(spacerItem)
         self.radioButton = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton.setObjectName("radioButton")
@@ -51,7 +53,9 @@ class FeedBackpage(object):
         self.radioButton_4 = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_4.setObjectName("radioButton_4")
         self.horizontalLayout_2.addWidget(self.radioButton_4)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_2.addItem(spacerItem1)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
@@ -63,7 +67,7 @@ class FeedBackpage(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget_2)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label_4 = QtWidgets.QLabel(self.widget_2)
-        self.label_4.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_4.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
         self.textEdit = QtWidgets.QTextEdit(self.widget_2)
@@ -72,7 +76,7 @@ class FeedBackpage(object):
         self.horizontalLayout_5.addWidget(self.widget_2)
         self.verticalLayout.addLayout(self.horizontalLayout_5)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_5.setStyleSheet('font: 10pt "MS Shell Dlg 2";')
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setWordWrap(True)
         self.label_5.setObjectName("label_5")
@@ -105,16 +109,24 @@ class FeedBackpage(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Feed Back Form"))
-        self.label_6.setText(_translate("MainWindow", "Rate your overall experience of exam : "))
+        self.label_6.setText(
+            _translate("MainWindow", "Rate your overall experience of exam : ")
+        )
         self.radioButton.setText(_translate("MainWindow", "Bad"))
         self.radioButton_2.setText(_translate("MainWindow", "Good"))
         self.radioButton_3.setText(_translate("MainWindow", "Great"))
         self.radioButton_4.setText(_translate("MainWindow", "Excellent"))
         self.label_4.setText(_translate("MainWindow", "Write your feed back here :"))
-        self.label_5.setText(_translate("MainWindow", "Thanks for attending exam and feed back . Exam is submitted and you can close the window ."))
+        self.label_5.setText(
+            _translate(
+                "MainWindow",
+                "Thanks for attending exam and feed back . Exam is submitted and you can close the window .",
+            )
+        )
         self.pushButton.setText(_translate("MainWindow", "Submit"))
 
-class Question_attempting_window(QtWidgets.QMainWindow,FeedBackpage):
+
+class Question_attempting_window(QtWidgets.QMainWindow, FeedBackpage):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
@@ -122,6 +134,7 @@ class Question_attempting_window(QtWidgets.QMainWindow,FeedBackpage):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
     ui = Question_attempting_window()
