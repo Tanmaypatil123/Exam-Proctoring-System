@@ -60,11 +60,11 @@ function addQuestion(questionType) {
     } else if (questionType === "Coding Q") {
         const codingLanguageInput = document.createElement('select');
         codingLanguageInput.id = 'coding-language-input';
-        codingLanguageInput.type = 'select';
+        codingLanguageInput.type = 'input';
         codingLanguageInput.placeholder = 'Select coding language...';
         codingLanguageInput.required = true;
 
-        const languages = ['Python', 'C++', 'JavaScript'];
+        const languages = ['Python', 'C++', 'JavaScript', 'Rust'];
         for (const language of languages) {
             const option = document.createElement('option');
             option.value = language.toLowerCase();
@@ -72,14 +72,34 @@ function addQuestion(questionType) {
             codingLanguageInput.add(option);
         }
 
+        // Add input for coding question
+        const inputTextLabel = document.createElement('label');
+        inputTextLabel.textContent = 'Input Text:';
+        const inputText = document.createElement('input');
+        inputText.type = 'text';
+        inputText.placeholder = 'Enter input text...';
+        inputText.required = true;
+
+        // Add output for coding question
+        const outputTextLabel = document.createElement('label');
+        outputTextLabel.textContent = 'Output Text:';
+        const outputText = document.createElement('input');
+        outputText.type = 'text';
+        outputText.placeholder = 'Enter expected output text...';
+        outputText.required = true;
+
         questionContainer.appendChild(codingLanguageInput);
+        questionContainer.appendChild(inputTextLabel);
+        questionContainer.appendChild(inputText);
+        questionContainer.appendChild(outputTextLabel);
+        questionContainer.appendChild(outputText);
     }
 
     questionCard.appendChild(questionContainer);
     quizCards.appendChild(questionCard);
 
     showQuestion(currentQuestionIndex);
-    currentQuestionIndex++;
+    currentQuestionIndex;
     questionsAdded = true; // Set to true to prevent additional card generation
 }
 
