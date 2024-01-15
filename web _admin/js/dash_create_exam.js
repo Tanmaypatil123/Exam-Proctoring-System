@@ -79,7 +79,7 @@ function addQuestion(questionType) {
     quizCards.appendChild(questionCard);
 
     showQuestion(currentQuestionIndex);
-    currentQuestionIndex++;
+    currentQuestionIndex;
     questionsAdded = true; // Set to true to prevent additional card generation
 }
 
@@ -112,17 +112,23 @@ function publishExam() {
         const codingLanguageInput = card.querySelector('#coding-language-input');
 
         const questionData = {
-            id: i + 1,
+            id: i,
             question: questionInput.value,
             options: {},
             answer: correctAnswerInput ? correctAnswerInput.value : undefined
         };
 
         optionsInputs.forEach((input, index) => {
-            if (correctAnswerInput && index < 4) {
+            // Iterate over all four options
+            if ( index>0 && index <= 4) {
                 questionData.options[String.fromCharCode(97 + index)] = input.value;
             }
         });
+
+        // Check for correctAnswerInput outside the loop
+        if (correctAnswerInput) {
+            questionData.answer = correctAnswerInput.value;
+        }
 
         if (codingLanguageInput) {
             questionData.codingLanguage = codingLanguageInput.value;
