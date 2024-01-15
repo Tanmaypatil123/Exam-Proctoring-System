@@ -122,6 +122,41 @@ function publishExam() {
 
     const cards = quizCards.getElementsByClassName('quiz-card');
     quizData = [];
+    const exam_name = document.getElementById("examName").value;
+    const duration = 60
+    const max_no_limit = 15
+    const description = exam_name
+    const no_of_question = document.getElementById("no-of-questions").value;
+
+
+    const exam_creation_data = {
+        name : exam_name,
+        description : description,
+        no_of_questions : no_of_question,
+        max_warning_limit : max_no_limit,
+        duration : duration,
+    }
+    console.log(exam_creation_data)
+
+
+    fetch("http://127.0.0.1:8000/api/exam/create-exam/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;",
+            "Authorization" : `Bearer ${localStorage.getItem("token")}`,
+            "Accept" : "application/json"
+        },
+        body: JSON.stringify(exam_creation_data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("exam creation successful:", data);
+        localStorage.setItem("exam_id" , data["exam"])
+        alert(`Your exam id is ${data["exam"]}`)
+    })
+    .catch(error => {
+        console.error("Exam creation failed:", error);
+    });
 
     for (let i = 0; i < cards.length; i++) {
         const card = cards[i];
@@ -130,7 +165,14 @@ function publishExam() {
         const correctAnswerInput = card.querySelector('select');
         const pointsInput = card.querySelector('input[type="number"]');
         const codingLanguageInput = card.querySelector('#coding-language-input');
+        
+        console.log(questionInput.value);
+        console.log(localStorage.getItem("exam_id"))
 
+        const question_data_new = {
+            exam_id : localStorage.getItem("exam_id"),
+            question : questionInput.value
+        }
         const questionData = {
             id: i,
             question: questionInput.value,
@@ -138,9 +180,31 @@ function publishExam() {
             answer: correctAnswerInput ? correctAnswerInput.value : undefined
         };
 
+        // fetch("http://127.0.0.1:8000/api/exam/question/", {
+        // method: "POST",
+        // headers: {
+        //     "Content-Type": "application/json;",
+        //     "Authorization" : `Bearer ${localStorage.getItem("token")}`,
+        //     "Accept" : "application/json"
+        // },
+        //     body: JSON.stringify(question_data_new),
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log("quetion creation successful:", data);
+        //     localStorage.setItem("question_id" , data["question_id"])
+
+        //     // alert(`Your exam id is ${data["exam"]}`)
+        // })
+        // .catch(error => {
+        //     console.error("question creation failed:", error);
+        // });
+
         optionsInputs.forEach((input, index) => {
             // Iterate over all four options
             if ( index>0 && index <= 4) {
+                console.log(localStorage.getItem("question_id"))
+
                 questionData.options[String.fromCharCode(97 + index)] = input.value;
             }
         });
@@ -158,6 +222,33 @@ function publishExam() {
 
         quizData.push(questionData);
     }
-
+    // console.log(quizData);
+    quizData.forEach(questionData => {
+        console.log(`Question ${questionData.id + 1}: ${questionData.question}`);
+        
+        // Iterate through options if available
+        if (questionData.codingLanguage) {
+            console.log(`Coding Language: ${questionData.codingLanguage}`);
+            Object.keys(questionData.options).forEach(optionKey => {
+                const optionValue = questionData.options[optionKey];
+                console.log(`Option ${optionKey}: ${optionValue}`);
+            });
+            // request 
+        }
+        else {
+            Object.keys(questionData.options).forEach(optionKey => {
+                const optionValue = questionData.options[optionKey];
+                console.log(`Option ${optionKey}: ${optionValue}`);
+            });
+        }
+    
+        // Print other properties
+        console.log(`Answer: ${questionData.answer}`);
+        console.log(`Points: ${questionData.points}`);
+        
+        
+    
+        console.log("--------");
+    });
     jsonOutput.textContent = JSON.stringify(quizData, null, 2);
 }

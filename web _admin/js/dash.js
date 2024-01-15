@@ -7,23 +7,39 @@ function openSection(sectionId) {
 }
 
 function parseData() {
-    var fileInput = document.getElementById('fileInput');
-    var preview = document.getElementById('preview');
-
-    var file = fileInput.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            var content = e.target.result;
-            // display the content of the file uploaded as preview.
-
-            preview.innerHTML = "<h3>Preview:</h3>" + content.slice(0, 500);
-        };
-
-        reader.readAsText(file);
+    const email = document.getElementById("email").value;
+    const name = document.getElementById("name").value;
+    const exam_id = document.getElementById("examId").value;
+    data = {
+        email : email,
+        name : name,
+        exam : exam_id
     }
+    fetch("http://127.0.0.1:8000/api/student/register/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;",
+            "Authorization" : `Bearer ${localStorage.getItem("token")}`,
+            "Accept" : "application/json"
+            // "charset=UTF-8"
+            // "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Registration successful:", data);
+        console.log(localStorage.getItem("token"));
+    })
+    .catch(error => {
+        console.error("Registration failed:", error);
+    });
+
+
+
+
+
+
 }
 function saveExamDetails() {
     const examName = document.getElementById("examName").value;
