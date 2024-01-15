@@ -176,6 +176,12 @@ select {
     padding: 8px;
     margin-bottom: 10px;
 }
+input[type="email"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
 
 #settings_see {
     background-color: gold;
