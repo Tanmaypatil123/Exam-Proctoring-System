@@ -36,42 +36,11 @@
     </form>
     <script src="js/script.js" defer></script>
     <script>
-        function registerOrganization() {
-            
-            const orgName = document.getElementById("orgName").value;
-            const orgEmail = document.getElementById("orgEmail").value;
-            const orgPassword = document.getElementById("orgPassword").value;
-
-            
-            const data = {
-                name: orgName,
-                email: orgEmail,
-                password: orgPassword,
-                password2: orgPassword,  
-                tc: "True"
-            };
-
-            // Make POST request
-            fetch("http://127.0.0.1:8000/api/register/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json; charset=UTF-8",
-                    // "Access-Control-Allow-Origin": "*",
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Registration successful:", data);
-            })
-            .catch(error => {
-                console.error("Registration failed:", error);
-            });
-        }
-        const bt = document.getElementById('registerButton')
-        bt.addEventListener('click', function() {
-         registerOrganization()
-        });
+        
+        // const bt = document.getElementById('registerButton')
+        // bt.addEventListener('click', function() {
+        //  registerOrganization()
+        // });
     </script>
 </body>
 </html>

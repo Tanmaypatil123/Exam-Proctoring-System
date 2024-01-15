@@ -24,9 +24,45 @@ function isPasswordValid(password) {
     return passwordRegex.test(password);
 }
 
+function registerOrganization() {
+            
+    const orgName = document.getElementById("orgName").value;
+    const orgEmail = document.getElementById("orgEmail").value;
+    const orgPassword = document.getElementById("orgPassword").value;
+
+    
+    const data = {
+        name: orgName,
+        email: orgEmail,
+        password: orgPassword,
+        password2: orgPassword,  
+        tc: "True"
+    };
+
+    // Make POST request
+    fetch("http://127.0.0.1:8000/api/register/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;",
+            // "charset=UTF-8"
+            // "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Registration successful:", data);
+        showRegistrationAlert();
+    })
+    .catch(error => {
+        console.error("Registration failed:", error);
+    });
+}
+
 function capturePhoto() {
     const password = document.getElementById('orgPassword').value;
     if (isPasswordValid(password)) {
+        registerOrganization();
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
             .then(function (stream) {
