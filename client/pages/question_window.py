@@ -112,7 +112,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Exam Name"))
-        self.label_2.setText(_translate("MainWindow", "Time : 00:00:00"))
+        self.label_2.setText(_translate("MainWindow", ""))
         # self.pushButton_3.setText(_translate("MainWindow", "2"))
         # self.pushButton_2.setText(_translate("MainWindow", "1"))
         # self.pushButton_5.setText(_translate("MainWindow", "4"))
@@ -127,6 +127,9 @@ class QuestionWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         # self.pushButton.clicked.connect(self.get_email_password)
+
+    def set_info(self,name):
+        self.label.setText(name)
 
 
 if __name__ == "__main__":

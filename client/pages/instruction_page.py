@@ -123,6 +123,10 @@ class INstructiionWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.selected_answer = None
         self.setupUi(self)
 
+    def set_info(self, no_question, time):
+        self.label_2.setText(f"1.Exam has Total {no_question} Question.")
+        self.label_3.setText(f"2.Total Exam timining is {time} Minutes .")
+
 
 if __name__ == "__main__":
     import sys

@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Test Name"))
-        self.label_4.setText(_translate("MainWindow", "Time Left : 30.00"))
+        self.label_4.setText(_translate("MainWindow", ""))
         self.label_2.setText(_translate("MainWindow", "1 ."))
         self.label_3.setText(_translate("MainWindow", "Question text goes here .. "))
         self.radioButton.setText(_translate("MainWindow", "Option 1"))
@@ -234,11 +234,12 @@ class Question_attempting_window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.radioButton_4.clicked.connect(self.radiobutton4_clicked)
         # self.timer_worker = timer
 
-    def update_time(self,minutes,seconds):
+    def update_time(self, minutes, seconds):
         # if self.timer_worker :
         #     minutes, seconds = divmod(self.timer_worker.duration_seconds, 60)
         self.label_4.setText(f"Time Left : {minutes:02d}:{seconds:02d}")
-
+    def set_info(self,name):
+        self.label.setText(name)
     def radiobutton_clicked(self):
         sender = self.sender()
         if sender.isChecked():

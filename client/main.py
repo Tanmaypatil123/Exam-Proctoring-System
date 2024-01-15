@@ -21,6 +21,7 @@ from pages.code_questino import Code_window
 from ultralytics import YOLO
 from workers.time_worker import TimerWorker
 import json
+from pages.feedback import feedback_window
 import shutil
 import os
 import cv2
@@ -111,6 +112,10 @@ class Window(QtWidgets.QMainWindow):
         # Question attempting window - 4
         self.attempting_window = Question_attempting_window()
         self.stacked_widget.addWidget(self.attempting_window)
+        
+        # feedback screen - 5
+        self.feed_back_window = feedback_window()
+        self.stacked_widget.addWidget(self.feed_back_window)
 
         # self.attempting_window.set_question(1, "hey", ["h", "j", "k", "l"])
         self.connect_submit_button()
@@ -122,14 +127,14 @@ class Window(QtWidgets.QMainWindow):
         ## event handling
         self.candidate_login_window.pushButton.clicked.connect(self.get_email_password)
         self.instruction_window.pushButton.clicked.connect(self.go_to_question_window)
+        self.question_window.pushButton.clicked.connect(self.go_to_feed_back_screen)
         # self.attempting_window.pushButton_3.clicked.connect(self.go_to_question_window_back)
         self.start_exam = False
         if self.start_exam:
             self.start_workers()
 
     def start_workers(self):
-
-         ### timer thread and worker runnup
+        ### timer thread and worker runnup
 
         # self.time_worker = TimerWorker(int(self.response["exam"]["duration"]))
         # self.time_worker.moveToThread(self.timer_thread)
@@ -146,8 +151,6 @@ class Window(QtWidgets.QMainWindow):
 
         # self.thread_face_detection.start()
         self.thread_yolo_detection.start()
-
-       
 
     def update_timer_label(self):
         minutes, seconds = divmod(self.timer_worker.duration_seconds, 60)
@@ -169,37 +172,42 @@ class Window(QtWidgets.QMainWindow):
     def handle_yolo_detection(self, result):
         # Handle YOLO detection result, e.g., show message or update UI based on phone detection
         print("YOLO Phone Detection Result:", result)
-        if result :
-            data = {
-                "message" : "Phone detected",
-                "email" : self.email
-            }
+        if result:
+            data = {"message": "Phone detected", "email": self.email}
 
-            res = requests.post(
-                "http://127.0.0.1:8000/api/exam/warning/",data=data
-            )
+            res = requests.post("http://127.0.0.1:8000/api/exam/warning/", data=data)
 
             warning = WarningWindow(self)
             warning.show()
+
     def go_to_question_window(self):
         self.start_workers()
         self.start_exam = True
         self.load_questions_ui()
         self.stacked_widget.setCurrentIndex(3)
 
+
+    def go_to_feed_back_screen(self):
+        self.stacked_widget.setCurrentIndex(5)
     def go_to_question_window_back(self):
         self.stacked_widget.setCurrentIndex(3)
 
     def go_to_instruction_page(self):
+        self.load_query()
+        self.instruction_window.set_info(
+            no_question=len(self.response["queations"]) + len(self.response["coding_questions"]),
+            time=self.response["exam"]["duration"]
+        )
+        self.question_window.set_info(self.response["exam"]["name"])
         self.stacked_widget.setCurrentIndex(2)
 
     def go_to_question_attempting_page(self):
         self.stacked_widget.setCurrentIndex(4)
 
     def connect_submit_button(self):
-        
-        self.attempting_window.pushButton_3.clicked.connect(self.go_to_question_window_back)
-        
+        self.attempting_window.pushButton_3.clicked.connect(
+            self.go_to_question_window_back
+        )
 
     def load_next_question(self):
         # Increment to load the next question
@@ -285,15 +293,15 @@ class Window(QtWidgets.QMainWindow):
         print(response.json())
 
     def load_question_backend(self, q):
-        
         attempting_window = Question_attempting_window()
         attempting_window.set_question(
             q, self.questions[q - 1]["title"], self.questions[q - 1]["options"]
         )
         attempting_window.pushButton_3.clicked.connect(self.go_to_question_window_back)
+        attempting_window.set_info(name=self.response["exam"]["name"])
         self.stacked_widget.addWidget(attempting_window)
         self.stacked_widget.setCurrentWidget(attempting_window)
-        
+
         print(q)
         # self.time_worker.timer_updated.connect(attempting_window.update_time)
 

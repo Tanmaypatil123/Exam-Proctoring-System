@@ -126,10 +126,14 @@ class FeedBackpage(object):
         self.pushButton.setText(_translate("MainWindow", "Submit"))
 
 
-class Question_attempting_window(QtWidgets.QMainWindow, FeedBackpage):
+class feedback_window(QtWidgets.QMainWindow, FeedBackpage):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.closed)
+
+    def closed(self):
+        self.close()
 
 
 if __name__ == "__main__":
@@ -137,6 +141,6 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QMainWindow()
-    ui = Question_attempting_window()
+    ui = feedback_window()
     ui.show()
     sys.exit(app.exec_())

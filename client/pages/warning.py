@@ -55,6 +55,7 @@ class WarningWindow(QtWidgets.QMainWindow, Ui_Dialog):
     def close_widget(self):
         self.close()
 
+
 if __name__ == "__main__":
     import sys
 
