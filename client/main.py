@@ -280,6 +280,7 @@ class Window(QtWidgets.QMainWindow):
         self.stacked_widget.setCurrentWidget(coding_window)
 
     def load_query(self):
+        print(self.examdetails)
         response = requests.get(
             "http://127.0.0.1:8000/api/exam/get-exam-deails/",
             data={"exam_id": self.examdetails},
