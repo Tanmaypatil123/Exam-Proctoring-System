@@ -13,11 +13,13 @@ from .serializers import (
     SubmissionSerializer,
 )
 from exam.models import Exam
+from users.renderers import UserRenderer
 
 
 class CodingQuestionListCreate(generics.ListCreateAPIView):
     queryset = CodingQuestion.objects.all()
     serializer_class = CodingQuestionSerializer
+    renderer_classes = [UserRenderer]
 
     def perform_create(self, serializer):
         coding_question_instance = serializer.save()
@@ -35,10 +37,12 @@ class CodingQuestionListCreate(generics.ListCreateAPIView):
 class TestCaseListCreate(generics.ListCreateAPIView):
     queryset = TestCase.objects.all()
     serializer_class = TestCaseSerializer
+    # renderer_classes = [UserRenderer]
 
 
 class SubmissionCreate(generics.CreateAPIView):
     serializer_class = SubmissionSerializer
+    # renderer_classes = [UserRenderer]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
